@@ -9,9 +9,11 @@
 void status(queue root){
     if(is_empty(root)){
         printf("Очередь пуста\n");
+        return;
     }
     else{
         output(root);
+        printf("Элементов для вывода больше нет \n");
     }
 }
 int get_number(int * n){
@@ -33,6 +35,7 @@ void menu_add_element(queue * root){
         return;
     }
     add_element(root, n);
+    printf("Элемент добавлен\n");
 }
 void menu_remove_elements(queue * root){
     if(is_empty(* root)){
@@ -40,4 +43,5 @@ void menu_remove_elements(queue * root){
         return;
     }
     printf("%d\n", remove_element(root));
+    printf("Элемент удален\n");
 }

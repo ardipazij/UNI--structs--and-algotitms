@@ -6,7 +6,7 @@ void init(queue * root){
     root->front = -1;
 }
 int is_empty(queue root){
-    return root.front;
+    return (root.front == -1);
 }
 int is_full(queue root){
     return ((root.front == root.back + 1) || (root.front == 0 && root.back == SIZE - 1));
@@ -36,7 +36,9 @@ int remove_element(queue * root){
     return data_elem;
 }
 void output(queue root){
-    for(int i = root.front; i != root.back; (i+1)%SIZE){
+    int i;
+    for(i = root.front; i != root.back; i = (i+1)%SIZE){
         printf("%d\n", root.data[i]);
     }
+    printf("%d\n", root.data[i]);
 }
