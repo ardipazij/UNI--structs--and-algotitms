@@ -62,3 +62,16 @@ void push_random(stack ** tmp, int n){
         push(tmp, data);
     }
 }
+void move(stack ** head, stack ** subhead){
+    stack * temp;
+    if((*head)->next_stack != NULL){
+        temp = (*head);
+        (*head) = (*head)->next_stack;
+        temp->next_stack = (*subhead);
+        (*subhead) = temp; 
+        printf("Элемент %d перемещён во вспомогательный стек\n", temp->data);
+    }
+    else{
+        printf("Запрашиваемый стек пуст\n");
+    }
+}

@@ -1,6 +1,6 @@
 #ifndef STATIC_QUEUE_H
 #define STATIC_QUEUE_H
-#define SIZE 3
+#define SIZE 4
 typedef struct queue{
     int data[SIZE];
     int back;

@@ -1,7 +1,6 @@
 #include "dynamic_stack.h"
 #include <stdlib.h>
 #include <stdio.h>
-#include <stdio_ext.h>
 int main(){
     stack *head = create();
     printf("1. Вывод текущего состояния стека на экран\n");
@@ -27,7 +26,7 @@ void menu(stack ** root){
         2.Перемещение элемента во вспомогательный стек.
     • при добавлении нового элемента запросить у пользователя происхождение этого элемента: действительно создание нового элемента или выбор его с вершины вспомогательного стека
     • вывод содержимого вспомогательного стека удаленных элементов
-
+ssh-keygen -t ed25519 -C "your_email@example.com"
     */
    stack * sub_head = create();
    int flag = 1;
@@ -67,7 +66,7 @@ void menu(stack ** root){
                 }
                 else if(choice == 2){
                     if(is_empty(sub_head) == 0){
-                        push(root, pop(&sub_head));
+                       move(&sub_head, root) ;//push(root, pop(&sub_head));
                     } else {printf("Вспомогательный стек пуст\n");}
                 }else{
                     printf("Error number\n");
@@ -100,7 +99,7 @@ void menu(stack ** root){
                         printf("%d\n", pop(root));
                     }
                     else if(elem == 2){
-                        push(&sub_head, pop(root));
+                        move(root, &sub_head);//push(&sub_head, pop(root));
                     }
                     else{
                         printf("Error number\n");
