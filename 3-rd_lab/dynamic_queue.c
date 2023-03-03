@@ -2,6 +2,7 @@
 #include "dynamic_queue.h"
 #include <stdlib.h>
 #include <string.h>
+#include <ncurses.h>
 
 int is_empty(DblLinkedList * list){
     return ((list)->head || (list)->tail);
@@ -12,40 +13,40 @@ DblLinkedList * create_list(){
     return list;
 }
 
-void pushBack(DblLinkedList * list, char statement[3]) {
+void pushBack(DblLinkedList ** list, char statement[4]) {
     queue_d * temp = calloc(1, sizeof(struct queue_d));
     if (temp == NULL) {
-        printf("Ошибка выделения памяти\n");
+        printw("Memmory error push\n");
         exit(1);
     }
     strcpy(temp->data, statement);
     temp->next_elem = NULL;
-    temp->prev_elem = list->tail;
-    if (list->tail) {
-         list->tail->next_elem = temp;
+    temp->prev_elem = (*list)->tail;
+    if ((*list)->tail) {
+         (*list)->tail->next_elem = temp;
      }
-     list->tail = temp;
+     (*list)->tail = temp;
  
-    if (list->head == NULL) {
-        list->head = temp;
+    if ((*list)->head == NULL) {
+        (*list)->head = temp;
     }
 }
 
-char * popFront(DblLinkedList *list) {
+char* popFront(DblLinkedList **list) {
     queue_d *prev;
-    char tmp[3];
-    if (list->head == NULL) {
-        printf("Ошибка выделения памяти\n");
+    char *tmp = calloc(4, sizeof(char));
+    if (tmp == NULL) {
+        printw("Memmory error pop\n");
         exit(1);
     }
  
-    prev = list->head;
-    list->head = list->head->next_elem;
-    if (list->head) {
-        list->head->prev_elem = NULL;
+    prev = (*list)->head;
+    (*list)->head = (*list)->head->next_elem;
+    if ((*list)->head) {
+        (*list)->head->prev_elem = NULL;
     }
-    if (prev == list->tail) {
-        list->tail = NULL;
+    if (prev == (*list)->tail) {
+        (*list)->tail = NULL;
     }
     strcpy(tmp, prev->data);
     free(prev);
@@ -67,8 +68,8 @@ void destroy(DblLinkedList **list) {
 void output(DblLinkedList *list){
     queue_d * temp = list->head;
     while (temp) {
-        printf("%s", temp->data);
+        printw("%s ", temp->data);
         temp = temp->next_elem;
     }
-    printf("\n");
+    printw("\n");
 }

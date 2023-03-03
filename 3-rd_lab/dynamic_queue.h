@@ -11,8 +11,10 @@ typedef struct DblLinkedList {
     queue_d *head;
     queue_d *tail;
 } DblLinkedList;
-int is_empty(queue_d *head);
-void pushBack(DblLinkedList * list, char statement[3]);
-char * popFront(DblLinkedList *list);
-void output(queue_d *head);
+int is_empty(DblLinkedList *list);
+DblLinkedList * create_list();
+void pushBack(DblLinkedList ** list, char statement[4]);
+char * popFront(DblLinkedList **list);
+void destroy(DblLinkedList **list);
+void output(DblLinkedList *list);
 #endif
