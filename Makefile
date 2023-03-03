@@ -3,7 +3,7 @@ first_lab:
 second_lab:
 	gcc -Wall -Werror -Wextra 2-nd\ lab/main.c 2-nd\ lab/menu.c 2-nd\ lab/static_queue.c -o second_lab -lm
 third_lab:
-	gcc -Wall -Werror -Wextra 3-rd_lab/main.c 3-rd_lab/dynamic_queue.c -lncurses -o third_lab -lm
+	gcc -Wall -Werror -Wextra 3-rd_lab/main.c 3-rd_lab/dynamic_queue.c 3-rd_lab/menu.c -lncurses -o third_lab -lm
 clean:
 	rm -rf first_lab
 	rm -rf second_lab
