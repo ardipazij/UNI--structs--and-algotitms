@@ -4,12 +4,12 @@
 #include "menu.h"
 
 void push(DblLinkedList ** list){
-    int push_number = (rand() % 3) + 1;
+    int push_number = (rand() % 3);
     printw("Add %d element(s)\n", push_number);
-    for(int j = 0; j < push_number; j++){
+    for(int j = 0; j <= push_number; j++){
         char ex[4];
         for(int i = 0; i < 3; i++){
-            ex[i] = 65 + rand() % 25;
+            ex[i] = 65 + rand() % 26;
         }
         ex[3] = '\0';
         pushBack(list, ex);
