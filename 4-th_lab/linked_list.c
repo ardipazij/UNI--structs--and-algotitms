@@ -41,3 +41,14 @@ void push(Node * list){
         list->size++;
     }
 }
+void output(Node list){
+    if(is_empty(list)){
+        printf("List is empty\n");
+    }
+    else{
+        for(int i = 0; i < list.size; i++){
+            printf("%d ", list.data[i]);
+        }
+        printf("\n");
+    }
+}
