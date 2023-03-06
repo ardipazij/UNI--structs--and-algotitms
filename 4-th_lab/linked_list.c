@@ -39,6 +39,7 @@ void push(Node * list){
             }
         }
         list->size++;
+        printf("Element added\n");
     }
 }
 void output(Node list){
