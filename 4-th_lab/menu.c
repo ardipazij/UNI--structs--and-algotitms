@@ -26,7 +26,7 @@ void delete_elem(Node * list){
         printf("Number's error\n");
         return;
     } else{
-        remove(list, number);
+        remove_elem(list, number);
     }
 }
 void delete_list(Node * list){

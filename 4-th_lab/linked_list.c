@@ -1,5 +1,5 @@
 #include "linked_list.h"
-
+#include <stdio.h>
 int is_empty(Node list){
     return (list.size == 0);
 }
@@ -53,7 +53,7 @@ void output(Node list){
         printf("\n");
     }
 }
-int search(Node list, int n){
+void search(Node list, int n){
     int flag = 0;
     for(int i = 0; i < list.size; i++){
         if(list.data[i] == n){
@@ -67,7 +67,7 @@ int search(Node list, int n){
         printf("Elem isnt found\n");
     }
 }
-int remove(Node * list, int n){
+void remove_elem(Node * list, int n){
     if(is_empty(*list)){
         printf("List is empty\n");
     }
