@@ -11,4 +11,5 @@ void push(Node * list);
 int get_number(int * n);
 void output(Node list);
 int search(Node lit, int n);
+int remove(Node * list, int n);
 #endif

@@ -66,3 +66,26 @@ int search(Node list, int n){
         printf("Elem isnt found\n");
     }
 }
+int remove(Node * list, int n){
+    if(is_empty(*list)){
+        printf("List is empty\n");
+    }
+    else{
+        int flag = 0;
+        for(int i = 0; i < list->size; i++){
+            if(list->data[i] == n){
+                flag++;
+                list->data[i] = '\0';
+                for (int j = i; j < list->size - 1; j++) {
+				    list->data[j] = list->data[j + 1];
+			    }
+			    list->size--;
+            } else if(list->data[i] > n){
+                break;
+            }
+        }
+        if(flag == 0){
+            printf("Elem isnt found\n");
+        }
+    }
+}
