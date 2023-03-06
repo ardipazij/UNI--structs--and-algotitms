@@ -10,4 +10,5 @@ int is_full(Node list);
 void push(Node * list);
 int get_number(int * n);
 void output(Node list);
+int search(Node lit, int n);
 #endif

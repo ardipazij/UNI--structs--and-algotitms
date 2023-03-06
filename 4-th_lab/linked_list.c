@@ -52,3 +52,17 @@ void output(Node list){
         printf("\n");
     }
 }
+int search(Node list, int n){
+    int flag = 0;
+    for(int i = 0; i < list.size; i++){
+        if(list.data[i] == n){
+            printf("%d, %d pos\n", list.data[i], i+1);
+            flag++;
+        }else if(list.data[i] > n){
+            break;
+        }
+    }
+    if(flag == 0){
+        printf("Elem isnt found\n");
+    }
+}
