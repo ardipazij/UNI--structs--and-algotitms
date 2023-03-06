@@ -5,6 +5,7 @@ int main(){
     int flag = 1;
     while(flag != 0){
         int n;
+        printf_info();
         if(get_number(&n)){
             printf("Неверный ввод\n");
         }
@@ -31,7 +32,6 @@ int main(){
             }
 
         }
-        printf_info();
     }
     return 0;
 }

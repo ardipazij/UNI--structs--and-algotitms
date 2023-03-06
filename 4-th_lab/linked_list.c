@@ -28,18 +28,24 @@ void push(Node * list){
             list->data[0] = n;
         }
         else{
-            for(int i = 0; i < list->size; i++){
+            int i;
+            for(i = 0; i < list->size; i++){
                 if(list->data[i] > n){
                     for(int j = list->size; j > i; j--){
                         list->data[j] = list->data[j-1];
                     }
                     list->data[i] = n;
+                    printf("Element added %d\n", list->data[i]);
                     break;
                 }
+
             }
+            if (i == list->size) {
+				list->data[i] = n;
+			}
         }
         list->size++;
-        printf("Element added\n");
+       
     }
 }
 void output(Node list){
