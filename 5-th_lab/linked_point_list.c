@@ -72,7 +72,28 @@ void push(List * list){
 			(*list).array[free_index].data = new_item;
             list->size++;
         } else if(n == 1){
-
+            int elem;
+            if(get_number(&elem)){
+                printf("Неккоректный ввод\n");
+                return;
+            }
+            int index_item = find_elem(*list,elem);
+            if(index_item == -1){
+                printf("Элемента не существует\n");
+                return;
+            }
+            int new_item;
+            if(get_number(&new_item)){
+                printf("Неккоректный ввод\n");
+                return;
+            }
+            int free_index;
+            int previous_index = find_prev_elem(*list, elem);
+            for (free_index = 1; free_index <= list->size; ++free_index)
+				if (list->array[free_index].next == -1) break;
+			list->array[free_index].next = index_item;
+			list->array[free_index].data = new_item;
+			list->array[previous_index].next = free_index;
         }
     }
 }
