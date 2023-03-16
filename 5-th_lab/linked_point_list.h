@@ -6,12 +6,13 @@ typedef struct{
     int data;
 } Node;
 typedef struct {
-    Node index[NMAX];
+    Node array[NMAX+1];
     int size;
     int head;
 } List;
 int is_empty(List list);
 int is_full(List list);
 void output(List list);
-void create(List * list);
+void create(List *list);
+void find_elem(List list);
 #endif
