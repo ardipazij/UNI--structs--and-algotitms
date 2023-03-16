@@ -24,3 +24,15 @@ void status(List list){
     }
     output(list);
 }
+void find(List list){
+    int n;
+    if(get_number(&n)){
+        printf("Неккокректный ввод\n");
+        return;
+    }
+    if(find_elem(list, n) == -1){
+        printf("Элемент не найдет\n");
+    } else{
+        printf("Найден элемент %d", list.array[find_elem(list,n)].data);
+    }
+}
