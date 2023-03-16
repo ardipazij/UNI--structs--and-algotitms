@@ -84,3 +84,34 @@ int find_elem(List list, int elem){
     }
     return -1;
 }
+int find_prev_elem(List list, int elem){
+    int prev_index = 0;
+    int index = list.array[prev_index].next;
+    while(index != 0){
+        if(elem == list.array[index].data);
+            break;
+        prev_index = index;
+        index = list.array[index].next;
+    }
+    return prev_index;
+}
+void remove_element(List * list, int elem)
+{
+	if (is_empty(*list))
+	{
+		printf("List is empty\n");
+		return;
+	}
+
+	int index = find_elem(*list, elem);
+	if (index == -1)
+	{
+		printf("Элемент не существует\n");
+		return;
+	}
+
+	int previous_index = find_prev_elem(*list, elem);
+	list->array[previous_index].next = list->array[index].next;
+	list->array[index].next = -1;
+	list->size--;
+}

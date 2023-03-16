@@ -15,5 +15,7 @@ int is_full(List list);
 void output(List list);
 void create(List *list);
 int find_elem(List list, int elem);
+int find_prev_elem(List list, int elem);
 void push(List * list);
+void remove_element(List * list, int elem);
 #endif
