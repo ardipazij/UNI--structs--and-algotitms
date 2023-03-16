@@ -34,7 +34,7 @@ void find(List list){
     if(index == -1){
         printf("Элемент не найден\n");
     } else{
-        printf("Найден элемент %d", list.array[index].data);
+        printf("Найден элемент %d\n", list.array[index].data);
     }
 }
 void delete_elem(List * list){

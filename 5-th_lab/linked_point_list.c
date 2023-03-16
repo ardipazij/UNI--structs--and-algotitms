@@ -50,6 +50,7 @@ void push(List * list){
         }
         if(n==0){
             int elem;
+            printf("\n Введите значение элемента\n");
             if(get_number(&elem)){
                 printf("Неккоректный ввод\n");
                 return;
@@ -60,6 +61,7 @@ void push(List * list){
                 return;
             }
             int new_item;
+            printf("\n Введите значение нового элемента\n");
             if(get_number(&new_item)){
                 printf("Неккоректный ввод\n");
                 return;
@@ -72,6 +74,7 @@ void push(List * list){
 			(*list).array[free_index].data = new_item;
             list->size++;
         } else if(n == 1){
+            printf("\n Введите значение элемента:\n");
             int elem;
             if(get_number(&elem)){
                 printf("Неккоректный ввод\n");
@@ -83,6 +86,7 @@ void push(List * list){
                 return;
             }
             int new_item;
+            printf("\n Введите значение нового элемента:\n");
             if(get_number(&new_item)){
                 printf("Неккоректный ввод\n");
                 return;

@@ -10,7 +10,7 @@ int main(){
         int n;
         print_info();
         if(get_number(&n)){
-            printf("Неверный ввод\n");
+            printf("Неверны й ввод\n");
         }
         else{
             switch(n){
