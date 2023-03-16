@@ -9,15 +9,17 @@ int is_full(List list){
 }
 
 void output(List list){
-    for(int i = 0; i < list.size; i++){
-        printf("%d ", list.index[i].data);
+    for(int i = list.array[0].next ; i != -1; i = list.array[i].next){
+        printf("%d ", list.array[i].data);
     }
     printf("\n");
 }
 void create(List * list){
-    for(int i = 0; i < NMAX; i++){
-        list->index[i].next = -1;
-        list->index[i].data = '\0';
+    list->array[0].data = 0;
+    list->array[0].next = 0;
+    for(int i = 1; i < NMAX+1; i++){
+        list->array[i].next = -1;
+        list->array[i].data = '\0';
     }
 }
 
@@ -27,16 +29,27 @@ void push(List * list, int index, int data){
         return;
     }
     if(is_empty((*list))){
-        list->index[list->head].data = data;
-        list->index[list->head].next = -1;
+        list->array[1].data = data;
+        list->array[1].next = -1;
+        list->array[0].next = 1;
         list->size++;
     }
-    else if(list->index[index].data != '\0'){
+    else if(list->array[index].data != '\0'){
         printf("Вы хотите добавить элемент перед(1) или после(0) заданного?\n");
         int n;
         scanf("%n");
+        if(n==0){
+
+        } else if(n == 1){
+
+        }
     }
 }
-push_prev(List * list, int index, int data){
-
+int find_elem(List list, int elem){
+    for(int i = list.array[0].next; i != -1; i = list.array[i].next ){
+        if(elem == list.array[i].data){
+            return i;
+        }
+    }
+    return -1;
 }
