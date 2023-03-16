@@ -1,6 +1,6 @@
 #include "menu.h"
 #include "linked_point_list.h"
-
+#include <stdio.h>
 int main(){
     List list;
     create(&list);
@@ -8,7 +8,7 @@ int main(){
     int flag = 1;
      while(flag != 0){
         int n;
-        printf_info();
+        print_info();
         if(get_number(&n)){
             printf("Неверный ввод\n");
         }
@@ -21,10 +21,10 @@ int main(){
                     find(list);
                     break;
                 case 3:
-                    add_elem(&list);
+                    push(&list);
                     break;
                 case 4:
-                    delete_elem(&list);
+                  //  delete_elem(&list);
                     break;
                 case 0:
                     flag = 0;
@@ -37,5 +37,4 @@ int main(){
         }
     }
     return 0;
-}
 }

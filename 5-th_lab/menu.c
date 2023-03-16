@@ -3,7 +3,7 @@
 #include "menu.h"
 
 void print_info(){
-    printf("1. Вывести на экран информацию о списке\n");
+    printf("1. Вывести на экран информацию o списке\n");
     printf("2. Поиск элемента по значению \n");
     printf("3. Добавить элемент в список\n");
     printf("4. Удалить элемент из списка\n");
@@ -30,9 +30,10 @@ void find(List list){
         printf("Неккокректный ввод\n");
         return;
     }
-    if(find_elem(list, n) == -1){
+    int index = find_elem(list, n); 
+    if(index == -1){
         printf("Элемент не найдет\n");
     } else{
-        printf("Найден элемент %d", list.array[find_elem(list,n)].data);
+        printf("Найден элемент %d", list.array[index].data);
     }
 }

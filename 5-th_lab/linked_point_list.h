@@ -14,5 +14,6 @@ int is_empty(List list);
 int is_full(List list);
 void output(List list);
 void create(List *list);
-void find_elem(List list);
+int find_elem(List list, int elem);
+void push(List * list);
 #endif
