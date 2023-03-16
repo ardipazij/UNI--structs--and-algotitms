@@ -13,5 +13,5 @@ typedef struct {
 int is_empty(List list);
 int is_full(List list);
 void output(List list);
-void create(List &list);
+void create(List * list);
 #endif
