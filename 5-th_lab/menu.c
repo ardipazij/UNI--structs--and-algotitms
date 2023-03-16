@@ -32,8 +32,16 @@ void find(List list){
     }
     int index = find_elem(list, n); 
     if(index == -1){
-        printf("Элемент не найдет\n");
+        printf("Элемент не найден\n");
     } else{
         printf("Найден элемент %d", list.array[index].data);
     }
+}
+void delete_elem(List * list){
+    int n;
+    if(get_number(&n)){
+        printf("Неккоректный ввод\n");
+        return;
+    }
+    remove_element(list, n);
 }

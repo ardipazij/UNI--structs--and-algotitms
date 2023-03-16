@@ -24,7 +24,7 @@ int main(){
                     push(&list);
                     break;
                 case 4:
-                  //  delete_elem(&list);
+                    delete_elem(&list);
                     break;
                 case 0:
                     flag = 0;

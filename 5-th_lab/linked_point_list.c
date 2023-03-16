@@ -88,7 +88,7 @@ int find_prev_elem(List list, int elem){
     int prev_index = 0;
     int index = list.array[prev_index].next;
     while(index != 0){
-        if(elem == list.array[index].data);
+        if(elem == list.array[index].data)
             break;
         prev_index = index;
         index = list.array[index].next;

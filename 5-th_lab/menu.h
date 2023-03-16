@@ -5,4 +5,5 @@ void print_info();
 int get_number(int * n);
 void status(List list);
 void find(List list);
+void delete_elem(List * list);
 #endif
