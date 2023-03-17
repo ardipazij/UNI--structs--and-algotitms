@@ -1,0 +1,4 @@
+#ifndef LINKED_DYNAMIC_LIST_H
+#define LINKED_DYNAMIC_LIST_H
+
+#endif
