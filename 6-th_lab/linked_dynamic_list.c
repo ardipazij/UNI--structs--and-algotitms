@@ -34,3 +34,34 @@ void destroy(List ** list){
         tmp = (*list);
     }
 }
+void output(List * list){
+    if(is_empty(*list)){
+        printf("List is empty\n");
+        return;
+    }
+    while(list->next_elem != NULL){
+        printf("%d ", list->data);
+        list = list->next_elem;
+    }
+    printf("\n");
+}
+void add (List ** list, int answer, int number, int number_to_add){// ответ 0 -- добавление до, ответ 1 -- добавление после
+    if(is_empty(*list) && answer == 0 ){
+        printf("B пустой список нельзя добавить элемент до заголовка.\n");
+        return;
+    }
+    else if(answer == 1){
+        List * tmp = *list;
+        while((tmp) != NULL){
+            tmp = tmp->next_elem;
+            if(tmp->data == number){
+                break;
+            }
+        }
+        if(tmp == NULL){
+            printf("Элемент не найден. \n");
+            return;
+        }
+
+    }
+}

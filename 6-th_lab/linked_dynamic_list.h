@@ -8,4 +8,5 @@ List * create();
 int is_empty(List * list);
 void delete_node(List ** list);
 void destroy(List ** list);
+void output(List * list);
 #endif
