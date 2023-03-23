@@ -92,3 +92,22 @@ void add (List ** list, int answer, int number, int number_to_add){
     }
 }
 
+void move_to_sublist(List ** list, List ** sublist, int number){
+    	List * cur = (*list)->next_elem;
+		List* prev = *list;
+        while(cur != NULL){
+            if(cur->data == number)
+                break;
+
+            prev = cur;
+            cur = cur->next_elem;
+        }
+        if(cur == NULL){
+            printf("Элемент не найден \n");
+            return;
+        }
+		List * tmp = cur;
+		prev->next_elem = cur->next_elem;
+		tmp->next_elem = (*sublist)->next_elem;
+		(*sublist)->next_elem = tmp;
+}
