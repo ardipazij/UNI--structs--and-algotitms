@@ -1,6 +1,6 @@
+#include <stdio.h>
 #include "menu.h"
 #include "linked_dynamic_list.h"
-#include <stdio.h>
 int main(){
     List * list = create();
     List * sublist = create();
@@ -23,7 +23,7 @@ int main(){
                     add_to_list(&list);
                     break;
                 case 4:
-                    remove(&list, &sublist);
+                    remove_elem(&list, &sublist);
                     break;
                 case 0:
                     flag = 0;

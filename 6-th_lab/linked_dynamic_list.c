@@ -10,6 +10,7 @@ List * create(){
         exit(1);
     }
     new_stack->next_elem = NULL;
+    new_stack->data = '\0';
     // printf("Создан новый элемент стека\n");
     return new_stack;
 }
@@ -40,8 +41,9 @@ void output(List * list){
         return;
     }
     while(list->next_elem != NULL){
-        printf("%d ", list->data);
         list = list->next_elem;
+        printf("%d ", list->data);
+        
     }
     printf("\n");
 }// ответ 0 -- добавление до, ответ 1 -- добавление после
@@ -50,13 +52,16 @@ void add (List ** list, int answer, int number, int number_to_add){
         printf("B пустой список нельзя добавить элемент до заголовка.\n");
         return;
     }
+    else if(is_empty(*list) && answer == 1 ){
+        List * tmp = create();
+        tmp->data  = number_to_add;
+        (*list)->next_elem = tmp;
+        return;
+    }
     else if(answer == 1){
         List * tmp = *list;
-        while((tmp) != NULL){
+        while((tmp) != NULL && tmp->data != number){
             tmp = tmp->next_elem;
-            if(tmp->data == number){
-                break;
-            }
         }
         if(tmp == NULL){
             printf("Элемент не найден. \n");
@@ -71,12 +76,9 @@ void add (List ** list, int answer, int number, int number_to_add){
     else if(answer == 0){
         List * tmp = *list;
         List * prev;
-        while(tmp != NULL){
+        while(tmp != NULL && tmp->data != number){
             prev = tmp;
             tmp = tmp->next_elem;
-            if(tmp->data == number){
-                break;
-            }
         }
         if(list == NULL){
             printf("Элемент не найден. \n");

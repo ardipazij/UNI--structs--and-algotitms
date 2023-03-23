@@ -27,7 +27,7 @@ void add_to_list(List ** list){
         printf("Неккоректный ввод");
         return;
     }
-    printf("Введите значение элемента\n");
+    printf("Введите значение элемента. Если список пуст -- введите любое целое число.\n");
     int number;
      if(get_number(&number)){
         printf("Неккоректный ввод");
@@ -42,7 +42,7 @@ void add_to_list(List ** list){
     add(list,answer, number, number_to_add);
 }
 
-void remove(List ** list, List ** sublist){
+void remove_elem(List ** list, List ** sublist){
     printf("Введите элемент, который вы хотите удалить\n");
     int number;
      if(get_number(&number)){
