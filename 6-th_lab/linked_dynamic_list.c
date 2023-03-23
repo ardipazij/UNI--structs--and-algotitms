@@ -35,7 +35,7 @@ void destroy(List ** list){
     }
 }
 void output(List * list){
-    if(is_empty(*list)){
+    if(is_empty(list)){
         printf("List is empty\n");
         return;
     }
@@ -44,8 +44,8 @@ void output(List * list){
         list = list->next_elem;
     }
     printf("\n");
-}
-void add (List ** list, int answer, int number, int number_to_add){// ответ 0 -- добавление до, ответ 1 -- добавление после
+}// ответ 0 -- добавление до, ответ 1 -- добавление после
+void add (List ** list, int answer, int number, int number_to_add){
     if(is_empty(*list) && answer == 0 ){
         printf("B пустой список нельзя добавить элемент до заголовка.\n");
         return;
@@ -62,6 +62,33 @@ void add (List ** list, int answer, int number, int number_to_add){// ответ
             printf("Элемент не найден. \n");
             return;
         }
+        List* new_elem = create();
+		new_elem->next_elem = tmp->next_elem;
+		new_elem->data = number_to_add;
+		tmp->next_elem = new_elem;
 
     }
+    else if(answer == 0){
+        List * tmp = *list;
+        List * prev;
+        while(tmp != NULL){
+            prev = tmp;
+            tmp = tmp->next_elem;
+            if(tmp->data == number){
+                break;
+            }
+        }
+        if(list == NULL){
+            printf("Элемент не найден. \n");
+            return;
+        }
+        List* new_elem = create();
+		new_elem->next_elem = tmp;
+		new_elem->data = number_to_add;
+		prev->next_elem = new_elem;
+
+    } else{
+        printf("Input error \n");
+    }
 }
+

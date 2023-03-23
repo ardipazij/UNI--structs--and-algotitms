@@ -1,8 +1,8 @@
 #ifndef LINKED_DYNAMIC_LIST_H
 #define LINKED_DYNAMIC_LIST_H
-typedef struct{
+typedef struct List{
     int data;
-    List * next_elem;
+    struct List * next_elem;
 } List;
 List * create();
 int is_empty(List * list);
