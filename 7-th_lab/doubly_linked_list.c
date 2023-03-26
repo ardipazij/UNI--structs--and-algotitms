@@ -101,6 +101,40 @@ void delete_node(Node ** list){
     free(*list);
     //*tmp = NULL;
 }
+void find_elem_forward(Node * head, int data){
+    if(is_empty(head)){
+        printf("Список пуст\n");
+        return;
+    }
+    Node * current = head->next;
+    int index = 1;
+    while(current != head && current->data != data){
+        current = current->next;
+        index++;
+    }
+    if(current == head){
+        printf("Элемент не найден.\n");
+        return;
+    }
+    printf ("Элемент %d найден на %d месте\n", current->data, index);
+}
+void find_elem_reverse(Node * head, int data){
+    if(is_empty(head)){
+        printf("Список пуст\n");
+        return;
+    }
+    Node * current = head->prev;
+    int index = 1;
+    while(current != head && current->data != data){
+        current = current->prev;
+        index++;
+    }
+    if(current == head){
+        printf("Элемент не найден.\n");
+        return;
+    }
+    printf ("Элемент %d найден на %d месте\n", current->data, index);
+}
 // void destroy(Node ** list){
 //     Node * tmp = *list;
 //     while(tmp != (*list) && (*list) != NULL){

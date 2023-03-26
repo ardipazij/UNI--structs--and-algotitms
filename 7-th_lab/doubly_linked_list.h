@@ -12,4 +12,6 @@ void print_forward(Node* head);
 void print_reverse(Node* head);
 int add(Node * head, int elem, int data, int answer);
 void remove_node(Node * head, int data);
+void find_elem_forward(Node * head, int data);
+void find_elem_reverse(Node * head, int data);
 #endif

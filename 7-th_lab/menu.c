@@ -33,3 +33,23 @@ void output(Node * head){
         break;
     }
 }
+void find(Node * head){
+    printf("Поиск элемента в прямом порядке(0) или в обратном(1)?\n");
+    int n;
+    if(get_number){
+        printf("Input error.\n");
+        return;
+    }
+    switch (n)
+    {
+    case 0:
+        find_forward(head);
+        break;
+    case 1:
+        find_reverse(head);
+        break;
+    default:
+        printf("Number error");
+        break;
+    }
+}

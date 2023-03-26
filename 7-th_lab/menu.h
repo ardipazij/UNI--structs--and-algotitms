@@ -3,4 +3,5 @@
 #define MENU_H
 int get_number(int * n);
 void output(Node * head);
+void find(Node * head);
 #endif
