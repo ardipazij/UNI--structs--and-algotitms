@@ -78,3 +78,34 @@ int add(Node * head, int elem, int data, int answer){
         current->prev = tmp;
     }
 }
+void remove_node(Node * head, int data){
+    if(is_empty(head)){
+        printf("Список пуст\n");
+        return;
+    }
+    Node * current = head->next;
+    while(current != head && current->data != data){
+        current = current->next;
+    }
+    if(current == head){
+        printf("Элемент не найден.\n");
+        return;
+    }
+    Node * next_current = current->next;
+    Node * prev_current = current->prev;
+    prev_current->next = next_current;
+    next_current->prev = prev_current;
+    delete_node(&current);
+}
+void delete_node(Node ** list){
+    free(*list);
+    //*tmp = NULL;
+}
+// void destroy(Node ** list){
+//     Node * tmp = *list;
+//     while(tmp != (*list) && (*list) != NULL){
+//         *list = (*list)->next;
+//         delete_node(&tmp);
+//         tmp = (*list);
+//     }
+// }

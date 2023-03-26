@@ -11,4 +11,5 @@ int is_empty(Node * head);
 void print_forward(Node* head);
 void print_reverse(Node* head);
 int add(Node * head, int elem, int data, int answer);
+void remove_node(Node * head, int data);
 #endif
