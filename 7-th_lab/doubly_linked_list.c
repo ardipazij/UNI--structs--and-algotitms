@@ -10,9 +10,6 @@ Node * init(){
 int is_empty(Node * head){
     return(head->next == head);
 }
-int add(Node ** head, int elem, int data, int answer){
- ;   
-}
 void print_forward(Node* head)
 {
 	Node* tmp = head->next;
@@ -32,4 +29,52 @@ void print_reverse(Node* head)
 		tmp = tmp->prev;
 	}
     printf("\n");
+}
+// 0 -- добавление после, 1 -- добавление до.
+int add(Node * head, int elem, int data, int answer){
+    if(is_empty(head) && answer == 0){
+        Node * current = calloc(1, sizeof(Node));
+        current->data = data;
+        current->next = head;
+        current->prev = head;
+        head->prev = current;
+        head->next = current;
+    }
+    else if(is_empty(head) && answer == 1){
+        printf("Add error\n");
+    }
+    else if(answer == 0){
+        Node * current = head->next;
+        while(current != head && current->data != elem){
+            current = current->next;
+        }
+        if (current == head){
+            printf("Значение не найдено.\n");
+            return;
+        }
+        Node * tmp = calloc(1, sizeof(Node));
+        Node * next_current = current->next;
+        tmp->data = data;
+        tmp->next = next_current;
+        tmp->prev = current;
+        next_current->prev = tmp;
+        current->next = tmp;
+    }
+    else if(answer == 1){
+        Node * current = head->next;
+        while(current != head && current->data != elem){
+            current = current->next;
+        }
+        if (current == head){
+            printf("Значение не найдено.\n");
+            return;
+        }
+        Node * tmp = calloc(1, sizeof(Node));
+        Node * prev_current = current->prev;
+        tmp->data = data;
+        tmp->next = current;
+        tmp->prev = prev_current;
+        prev_current->next = tmp;
+        current->prev = tmp;
+    }
 }

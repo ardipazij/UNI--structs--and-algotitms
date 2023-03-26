@@ -10,5 +10,5 @@ Node * init();
 int is_empty(Node * head);
 void print_forward(Node* head);
 void print_reverse(Node* head);
-int add(Node ** head, int elem, int data, int answer);
+int add(Node * head, int elem, int data, int answer);
 #endif
