@@ -1,10 +1,11 @@
 #include "doubly_linked_list.h"
 #include <stdlib.h>
-
+#include <stdio.h>
 Node * init(){
     Node * tmp = calloc(1, sizeof(Node));
     tmp->next = tmp;
 	tmp->prev = tmp;
+    return(tmp);
 }
 
 int is_empty(Node * head){
@@ -31,24 +32,24 @@ void print_reverse(Node* head)
     printf("\n");
 }
 // 0 -- добавление после, 1 -- добавление до.
-int add(Node * head, int elem, int data, int answer){
-    if(is_empty(head) && answer == 0){
+void add(Node ** head, int elem, int data, int answer){
+    if(is_empty((*head)) && answer == 0){
         Node * current = calloc(1, sizeof(Node));
         current->data = data;
-        current->next = head;
-        current->prev = head;
-        head->prev = current;
-        head->next = current;
+        current->next = (*head);
+        current->prev = (*head);
+        (*head)->prev = current;
+        (*head)->next = current;
     }
-    else if(is_empty(head) && answer == 1){
+    else if(is_empty((*head)) && answer == 1){
         printf("Add error\n");
     }
     else if(answer == 0){
-        Node * current = head->next;
-        while(current != head && current->data != elem){
+        Node * current = (*head)->next;
+        while(current != (*head) && current->data != elem){
             current = current->next;
         }
-        if (current == head){
+        if (current == (*head)){
             printf("Значение не найдено.\n");
             return;
         }
@@ -61,11 +62,11 @@ int add(Node * head, int elem, int data, int answer){
         current->next = tmp;
     }
     else if(answer == 1){
-        Node * current = head->next;
-        while(current != head && current->data != elem){
+        Node * current = (*head)->next;
+        while(current != (*head) && current->data != elem){
             current = current->next;
         }
-        if (current == head){
+        if (current == (*head)){
             printf("Значение не найдено.\n");
             return;
         }
@@ -78,16 +79,16 @@ int add(Node * head, int elem, int data, int answer){
         current->prev = tmp;
     }
 }
-void remove_node(Node * head, int data){
-    if(is_empty(head)){
+void remove_node(Node ** head, int data){
+    if(is_empty((*head))){
         printf("Список пуст\n");
         return;
     }
-    Node * current = head->next;
-    while(current != head && current->data != data){
+    Node * current = (*head)->next;
+    while(current != (*head) && current->data != data){
         current = current->next;
     }
-    if(current == head){
+    if(current == (*head)){
         printf("Элемент не найден.\n");
         return;
     }
@@ -143,3 +144,18 @@ void find_elem_reverse(Node * head, int data){
 //         tmp = (*list);
 //     }
 // }
+int elem_not_exist(Node * head, int data){
+    int len = 0;
+    Node * cur = head->prev;
+    while(cur!= head){
+        cur = cur->prev;
+        len++;
+    }
+    int index = 0;
+    Node * current = head->prev;
+    while(current != head && current->data != data){
+        current = current->prev;
+        index++;
+    }
+    return (index == len);
+}
