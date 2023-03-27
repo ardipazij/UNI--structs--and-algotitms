@@ -136,14 +136,15 @@ void find_elem_reverse(Node * head, int data){
     }
     printf ("Элемент %d найден на %d месте\n", current->data, index);
 }
-// void destroy(Node ** list){
-//     Node * tmp = *list;
-//     while(tmp != (*list) && (*list) != NULL){
-//         *list = (*list)->next;
-//         delete_node(&tmp);
-//         tmp = (*list);
-//     }
-// }
+void destroy(Node ** list){
+    Node * current;
+    (*list)->prev->next = NULL;
+    while((*list) != NULL){
+        current = (*list);
+        (*list) = (*list)->next;
+        free(current);
+    }
+}
 int elem_not_exist(Node * head, int data){
     int len = 0;
     Node * cur = head->prev;

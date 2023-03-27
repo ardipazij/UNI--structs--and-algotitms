@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include "menu.h"
 #include "doubly_linked_list.h"
-
+#include <stdlib.h>
 int main(){
     Node * head = init();
     int flag = 0;
@@ -33,6 +33,7 @@ int main(){
             break;
         }
     }
-//    destroy(&head);
+    destroy(&head);
+    //free(head);
     return 0;
 }

@@ -15,4 +15,5 @@ void find_elem_forward(Node * head, int data);
 void find_elem_reverse(Node * head, int data);
 void delete_node(Node ** list);
 int elem_not_exist(Node * head, int data);
+void destroy(Node ** list);
 #endif
