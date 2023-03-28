@@ -131,11 +131,25 @@ void add_to_node_list (Node_of_lists ** list, int answer, int index, int new_ind
 void delete_node(Node ** list){
     free(*list);
 }
-void destroy(Node ** list){
+void delete_node_list(Node_of_lists ** list){
+    Node * tmp = (*list)->data;
+    destroy_node(&tmp);
+    free(*list);
+
+}
+void destroy_node(Node ** list){
     Node * tmp = *list;
     while(tmp != NULL && (*list) != NULL){
         *list = (*list)->next;
         delete_node(&tmp);
+        tmp = (*list);
+    }
+}
+void destroy_node_list (Node_of_lists ** list){
+    Node_of_lists * tmp = *list;
+    while(tmp != NULL && (*list) != NULL){
+        *list = (*list)->next;
+        delete_node_list(&tmp);
         tmp = (*list);
     }
 }
@@ -152,4 +166,19 @@ void remove_node(Node ** list, int number){
         }
 		prev->next = cur->next;
         delete_node(&cur);
+}
+
+void remove_node_list (Node_of_lists ** list, int index){
+    Node_of_lists * cur = (*list)->next;
+    Node_of_lists * prev;
+    while(cur != NULL && cur->index == index){
+        prev = cur;
+        cur = cur->next;
+    }
+    if(cur == NULL){
+        printf("Элемент не найден \n");
+        return;
+    }
+    prev->next = cur->next;
+    delete_node_list(&cur);
 }
