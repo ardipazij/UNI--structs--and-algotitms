@@ -79,11 +79,11 @@ void add_to_node (Node ** list, int answer, int number, int number_to_add){
 }
 // ответ 0 -- добавление до, ответ 1 -- добавление после
 void add_to_node_list (Node_of_lists ** list, int answer, int index, int new_index, Node * list_to_add){
-    if(is_empty(*list) && answer == 0 ){
+    if(is_empty_list(*list) && answer == 0 ){
         printf("B пустой список нельзя добавить элемент до заголовка.\n");
         return;
     }
-    else if(is_empty(*list) && answer == 1 ){
+    else if(is_empty_list(*list) && answer == 1 ){
         Node_of_lists * tmp = create_node_of_lists();
         tmp->index  = new_index;
         tmp->data = list_to_add;

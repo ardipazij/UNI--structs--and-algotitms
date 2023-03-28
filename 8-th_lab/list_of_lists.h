@@ -22,5 +22,5 @@ void remove_node(Node ** list, int number);
 void remove_node_list (Node_of_lists ** list, int index);
 void destroy_node (Node ** list);
 void destroy_node_list (Node_of_lists ** list);
-void print_node_list(Node_of_lists * list)
+void print_node_list(Node_of_lists * list);
 #endif
