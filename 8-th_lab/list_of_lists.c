@@ -182,3 +182,26 @@ void remove_node_list (Node_of_lists ** list, int index){
     prev->next = cur->next;
     delete_node_list(&cur);
 }
+void print_node(Node * list){
+    if(is_empty_node(list)){
+        printf("List is empty\n");
+        return;
+    }
+    while(list->next!= NULL){
+        list = list->next;
+        printf("%d ", list->data);
+        
+    }
+    printf("\n");
+}
+void print_node_list(Node_of_lists * list){
+    if(is_empty_list(list)){
+        printf("List is empty\n");
+        return;
+    }   
+    while(list->next!= NULL){
+        list = list->next;
+        printf("%d :", list->index);
+        print_node(list->data);
+    }
+}
