@@ -108,9 +108,9 @@ void add_to_node_list (Node_of_lists ** list, int answer, int index, int new_ind
 
     }
     else if(answer == 0){
-        Node * tmp = *list;
-        Node * prev;
-        while(tmp != NULL && tmp->data != number){
+        Node_of_lists * tmp = *list;
+        Node_of_lists * prev;
+        while(tmp != NULL && tmp->index != index){
             prev = tmp;
             tmp = tmp->next;
         }
@@ -118,13 +118,38 @@ void add_to_node_list (Node_of_lists ** list, int answer, int index, int new_ind
             printf("Элемент не найден. \n");
             return;
         }
-        Node * new_elem = create_node();
+        Node_of_lists * new_elem = create_node_of_lists();
 		new_elem->next = tmp;
-		new_elem->data = number_to_add;
+		new_elem->data = list_to_add;
+        new_elem->index = new_index;
 		prev->next = new_elem;
 
     } else{
         printf("Input error \n");
     }
 }
-
+void delete_node(Node ** list){
+    free(*list);
+}
+void destroy(Node ** list){
+    Node * tmp = *list;
+    while(tmp != NULL && (*list) != NULL){
+        *list = (*list)->next;
+        delete_node(&tmp);
+        tmp = (*list);
+    }
+}
+void remove_node(Node ** list, int number){
+    	Node * cur = (*list)->next;
+        Node * prev;
+        while(cur != NULL && cur->data == number){
+            prev = cur;
+            cur = cur->next;
+        }
+        if(cur == NULL){
+            printf("Элемент не найден \n");
+            return;
+        }
+		prev->next = cur->next;
+        delete_node(&cur);
+}

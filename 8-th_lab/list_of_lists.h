@@ -18,4 +18,5 @@ Node * create_node();
 Node_of_lists * create_node_of_lists();
 void add_to_node (Node ** list, int answer, int number, int number_to_add);
 void add_to_node_list (Node_of_lists ** list, int answer, int index, int new_index, Node * list_to_add);
+void remove_node(Node ** list, int number);
 #endif
