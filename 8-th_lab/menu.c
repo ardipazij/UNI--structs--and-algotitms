@@ -28,7 +28,7 @@ void add_to_list(Node_of_lists ** list){
         printf("Ошибка ввода");
         return;
     }
-    printf("Введите индекс, до или после которого вы хотите вставить элемент:\n");
+    printf("Введите индекс, до или после которого вы хотите вставить элемент(если список пустой, введите любое число):\n");
     if(get_number(&index)){
         printf("Ошибка ввода");
         return;
@@ -54,7 +54,7 @@ void add_to_elem_list(Node_of_lists ** list){
         return;
     }
     if(elem_not_exist((* list), index)){
-        printf("элемент не существует\n");
+        printf("Список не существует\n");
         return;
     }
     Node_of_lists * tmp = *list;
@@ -68,7 +68,7 @@ void add_to_elem_list(Node_of_lists ** list){
         printf("Ошибка ввода");
         return;
     }
-    printf("Введите элемент, до или после которого вы хотите вставить элемент:\n");
+    printf("Введите элемент, до или после которого вы хотите вставить элемент(если список пустой, введите любое число):\n");
     int data;
     if(get_number(&data)){
         printf("Ошибка ввода");
@@ -94,7 +94,7 @@ void remove_node_for_menu(Node_of_lists ** list){
         return;
     }
     if(elem_not_exist((* list), index)){
-        printf("элемент не существует\n");
+        printf("Список не существует\n");
         return;
     }
     Node_of_lists * tmp = *list;
@@ -124,7 +124,7 @@ void remove_list_for_menu(Node_of_lists ** list){
         return;
     }
     if(elem_not_exist((* list), index)){
-        printf("элемент не существует\n");
+        printf("Список не существует\n");
         return;
     }
     remove_node_list (list,index);
