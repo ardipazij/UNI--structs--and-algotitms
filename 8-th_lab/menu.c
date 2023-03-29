@@ -20,3 +20,69 @@ void print_info(){
     printf("6. Удаление элемента из списка.\n");
     printf("0. Выход из программы.\n");
 }
+
+void add_to_list(Node_of_lists ** list){
+    int answer, new_index, index;
+    printf("Введите индекс, который хотите добавить:\n");
+    if(get_number(&new_index)){
+        printf("Ошибка ввода");
+        return;
+    }
+    printf("Введите индекс, до или после которого вы хотите вставить элемент:\n");
+    if(get_number(&index)){
+        printf("Ошибка ввода");
+        return;
+    }
+    if(elem_not_exist((* list), index) && !is_empty_list(*list)){
+        printf("элемент не существует\n");
+        return;
+    }
+    printf("Вы хотите вставить элемент до(0) или после(1)?");
+    if(get_number(&answer)){
+        printf("Ошибка ввода");
+        return;
+    }
+    Node * list_to_add = create_node();
+    add_to_node_list (list, answer, index,new_index, list_to_add);
+}
+
+void add_to_elem_list(Node_of_lists ** list){
+    printf("Введите индекс списка : ");
+    int index;
+    if(get_number(&index)){
+        printf("Ошибка ввода");
+        return;
+    }
+    if(elem_not_exist((* list), index)){
+        printf("элемент не существует\n");
+        return;
+    }
+    Node_of_lists * tmp = *list;
+    while((tmp) != NULL && tmp->index != index){
+        tmp = tmp->next;
+    }
+    Node * elem = tmp->data;
+    printf("Введите элемент, который хотите добавить:\n");
+    int elem_to_add;
+    if(get_number(&elem_to_add)){
+        printf("Ошибка ввода");
+        return;
+    }
+    printf("Введите элемент, до или после которого вы хотите вставить элемент:\n");
+    int data;
+    if(get_number(&data)){
+        printf("Ошибка ввода");
+        return;
+    }
+    if(elem_node_not_exist(elem,data) && !is_empty_node(elem)){
+        printf("элемент не существует\n");
+        return;
+    }
+    printf("Вы хотите вставить элемент до(0) или после(1)?");
+    int answer;
+    if(get_number(&answer)){
+        printf("Ошибка ввода");
+        return;
+    }
+    add_to_node (&elem,answer, data, elem_to_add);
+}

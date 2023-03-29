@@ -205,3 +205,33 @@ void print_node_list(Node_of_lists * list){
         print_node(list->data);
     }
 }
+int elem_not_exist(Node_of_lists * head, int data){
+    int len = 0;
+    Node_of_lists * cur = head->next;
+    while(cur!= NULL){
+        cur = cur->next;
+        len++;
+    }
+    int index = 0;
+    Node_of_lists * current = head->next;
+    while(current != NULL && current->index != data){
+        current = current->next;
+        index++;
+    }
+    return (index == len);
+}
+int elem_node_not_exist(Node * head, int data){
+    int len = 0;
+    Node * cur = head->next;
+    while(cur!= NULL){
+        cur = cur->next;
+        len++;
+    }
+    int index = 0;
+    Node * current = head->next;
+    while(current != NULL && current->data != data){
+        current = current->next;
+        index++;
+    }
+    return (index == len);
+}

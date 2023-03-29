@@ -23,4 +23,6 @@ void remove_node_list (Node_of_lists ** list, int index);
 void destroy_node (Node ** list);
 void destroy_node_list (Node_of_lists ** list);
 void print_node_list(Node_of_lists * list);
+int elem_not_exist(Node_of_lists * head, int data);
+int elem_node_not_exist(Node * head, int data);
 #endif

@@ -19,6 +19,12 @@ int main(){
         case 0:
             flag = 1;
             break;
+        case 3:
+            add_to_list(&list);
+            break;
+        case 4:
+            add_to_elem_list(&list);
+            break;
         default:
             break;
         }
