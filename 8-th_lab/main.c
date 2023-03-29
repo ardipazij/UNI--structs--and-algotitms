@@ -25,6 +25,12 @@ int main(){
         case 4:
             add_to_elem_list(&list);
             break;
+        case 5:
+            remove_node_for_menu(& list);
+            break;
+        case 6:
+            remove_list_for_menu(& list);
+            break;
         default:
             break;
         }

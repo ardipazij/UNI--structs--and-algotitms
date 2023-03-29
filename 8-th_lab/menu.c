@@ -16,8 +16,8 @@ void print_info(){
     printf("2. Поиск заданного элемента.\n");
     printf("3.Добавление элемента в массив списков.\n");
     printf("4. Добавление элемента в список. \n");
-    printf("5. Удаление элемента из списка списков.\n");
-    printf("6. Удаление элемента из списка.\n");
+    printf("5. Удаление элемента из списка.\n");
+    printf("6. Удаление элемента из списка списков.\n");
     printf("0. Выход из программы.\n");
 }
 
@@ -85,4 +85,37 @@ void add_to_elem_list(Node_of_lists ** list){
         return;
     }
     add_to_node (&elem,answer, data, elem_to_add);
+}
+void remove_node_for_menu(Node_of_lists ** list){
+    printf("Введите индекс списка, откуда хотите удалить элемент. \n");
+    int index; 
+    if(get_number(&index)){
+        printf("Ошибка ввода");
+        return;
+    }
+    if(elem_not_exist((* list), index)){
+        printf("элемент не существует\n");
+        return;
+    }
+    Node_of_lists * tmp = *list;
+    while((tmp) != NULL && tmp->index != index){
+        tmp = tmp->next;
+    }
+    Node * elem = tmp->data; 
+    printf("Введите значение, которое вы хотите удалить. \n");
+    int data;
+    if(get_number(&data)){
+        printf("Ошибка ввода");
+        return;
+    }
+    if(elem_node_not_exist(elem,data)){
+        printf("элемент не существует\n");
+        return;
+    }
+    remove_node(&elem, data);
+
+
+}
+void remove_list_for_menu(Node_of_lists ** list){
+    ;
 }

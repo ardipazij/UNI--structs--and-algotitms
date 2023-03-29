@@ -155,9 +155,9 @@ void destroy_node_list (Node_of_lists ** list){
 }
 void remove_node(Node ** list, int number){
     	Node * cur = (*list)->next;
-        Node * prev;
-        while(cur != NULL && cur->data == number){
-            prev = cur;
+        Node * prev = (*list);
+        while(cur != NULL && cur->data != number){
+            prev = prev->next;
             cur = cur->next;
         }
         if(cur == NULL){
