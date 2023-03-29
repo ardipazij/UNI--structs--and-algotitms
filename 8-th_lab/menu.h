@@ -7,4 +7,5 @@ void add_to_list(Node_of_lists ** list);
 void add_to_elem_list(Node_of_lists ** list);
 void remove_list_for_menu(Node_of_lists ** list);
 void remove_node_for_menu(Node_of_lists ** list);
+void find_elem(Node_of_lists ** list);
 #endif

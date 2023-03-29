@@ -170,8 +170,8 @@ void remove_node(Node ** list, int number){
 
 void remove_node_list (Node_of_lists ** list, int index){
     Node_of_lists * cur = (*list)->next;
-    Node_of_lists * prev;
-    while(cur != NULL && cur->index == index){
+    Node_of_lists * prev = (*list);
+    while(cur != NULL && cur->index != index){
         prev = cur;
         cur = cur->next;
     }

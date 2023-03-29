@@ -31,9 +31,13 @@ int main(){
         case 6:
             remove_list_for_menu(& list);
             break;
+        case 2:
+            find_elem(&list);
+            break;
         default:
             break;
         }
+
     }
     destroy_node_list(&list);
     return 0;

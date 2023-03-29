@@ -117,5 +117,40 @@ void remove_node_for_menu(Node_of_lists ** list){
 
 }
 void remove_list_for_menu(Node_of_lists ** list){
-    ;
+    printf("Введите индекс списка, который вы хотите удалить. \n");
+    int index;
+    if(get_number(&index)){
+        printf("Ошибка ввода");
+        return;
+    }
+    if(elem_not_exist((* list), index)){
+        printf("элемент не существует\n");
+        return;
+    }
+    remove_node_list (list,index);
+}
+void find_elem(Node_of_lists ** list){
+    int elem;
+    int flag = 0;
+    printf("Введите элемент для поиска \n");
+    if(get_number(&elem)){
+        printf("Элемент не найден\n");
+        return;
+    }
+    Node_of_lists * currenr_list = (*list)->next;
+    while(currenr_list != NULL){
+        Node * current_node = currenr_list->data;
+        current_node = current_node->next;
+        while(current_node != NULL && current_node->data != elem){
+            current_node = current_node->next;
+        }
+        if(current_node != NULL){
+            printf("Элемент %d найден в списке с индексом %d\n", elem, currenr_list->index);
+            flag++;
+        }
+        currenr_list = currenr_list->next;
+    }
+    if (flag == 0){
+        printf("Элемент не найден. \n");
+    }
 }
