@@ -5,5 +5,8 @@ typedef struct Tree_node{
     struct Tree_node * right;
     struct Tree_node * left;
 }Tree_node;
+Tree_node * create(int data);
 void destroy(Tree_node ** head);
+void add_to_tree(Tree_node ** head, int numbers);
+void print_in_symetry_order(Tree_node * head, int depth);
 #endif
