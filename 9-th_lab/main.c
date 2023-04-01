@@ -3,16 +3,33 @@
 #include <stdio.h>
 
 int main(){
-    printf("Введите количество элементов дерева(0, 99): \n");
-    int n;
-    if(scanf("%d", &n) != 1){
-        printf("n/a\n");
-        return 0;
-    }
+    int flag = 0;
     Tree_node * root;
-    add_to_tree(&root, n);
-    //printf("%d", root->data);
-    print_in_symetry_order(root, 0);
+    while(flag == 0){
+        print_info();
+        int n;
+        if(get_number(&n)){
+            printf("Ошибка ввода \n");
+        }
+        switch (n)
+        {
+        case 1:
+            add(&root);
+            break;
+        case 2:
+            output(root);
+            break;
+        case 3:
+            destroy(&root);
+            break;
+        case 0:
+            flag = 1;
+            break;
+        default:
+            printf("Неверный ввод\n");
+            break;
+        }
+    }
     destroy(&root);
     return 0;
 }
