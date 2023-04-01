@@ -20,6 +20,7 @@ Tree_node * create(int data){
 }
 void add_to_tree(Tree_node ** head, int numbers){
     if(numbers == 0){
+        (*head) = NULL;
         return;
     }
     int left = numbers / 2;
@@ -27,12 +28,8 @@ void add_to_tree(Tree_node ** head, int numbers){
     int data = rand() % 99;
     Tree_node * new_tree_node = create(data);
     //printf("%d\n", new_tree_node->data);
-    Tree_node * left_tree;
-    new_tree_node->left = left_tree;
-    Tree_node * right_tree;
-    new_tree_node->right = right_tree;
-    add_to_tree(&left_tree, left);
-    add_to_tree(&right_tree, right);
+    add_to_tree(&new_tree_node->left, left);
+    add_to_tree(&new_tree_node->right, right);
     (*head) = new_tree_node;
 }
 
@@ -41,10 +38,9 @@ void print_in_symetry_order(Tree_node * head, int depth){
         return;
     }
     print_in_symetry_order(head->left, depth + 4);
-    while(depth != 0){
+    for(int i = 0; i < depth; i++){
         printf(" ");
-        depth--;
     }
-    printf("%d",head->data );
+    printf("%d\n",head->data );
     print_in_symetry_order(head->right, depth + 4);
 }
