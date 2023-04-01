@@ -33,14 +33,38 @@ void add_to_tree(Tree_node ** head, int numbers){
     (*head) = new_tree_node;
 }
 
-void print_in_symetry_order(Tree_node * head, int depth){
+void print_in_symemetric_order(Tree_node * head, int depth){
     if(head == NULL){
         return;
     }
-    print_in_symetry_order(head->left, depth + 4);
+    print_in_symetry_order(head->left, depth + 5);
     for(int i = 0; i < depth; i++){
         printf(" ");
     }
     printf("%d\n",head->data );
-    print_in_symetry_order(head->right, depth + 4);
+    print_in_symetry_order(head->right, depth + 5);
+}
+
+void print_in_inverse_symmetric_order(Tree_node * head, int depth){
+    if(head == NULL){
+        return;
+    }
+    print_in_symetry_order(head->right, depth + 5);
+    for(int i = 0; i < depth; i++){
+        printf(" ");
+    }
+    printf("%d\n",head->data);
+    print_in_symetry_order(head->left, depth + 5);
+}
+
+void print_in_direct_order(Tree_node * head, int depth){
+    if(head == NULL){
+        return;
+    }
+    for(int i = 0; i < depth; i++){
+        printf(" ");
+    }
+    printf("%d\n",head->data);
+    print_in_direct_order(head->left, depth + 5);
+    print_in_direct_order(head->right, depth + 5);
 }
