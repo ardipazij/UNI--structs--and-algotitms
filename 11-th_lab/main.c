@@ -1,10 +1,10 @@
 #include "menu.h"
-#include "binary_tree_with_substack.h"
+#include "binary_tree.h"
 #include <stdio.h>
-
+#include <stdlib.h>
 int main(){
     int flag = 0;
-    Tree_node * root;
+    Tree_node * root = NULL;
     while(flag == 0){
         print_info();
         int n;
@@ -14,12 +14,15 @@ int main(){
         switch (n)
         {
         case 1:
-            //add(&root);
+            add(&root);
             break;
         case 2:
-            output(root);
+            find(root);
             break;
         case 3:
+            output(root);
+            break;
+        case 4:
             destroy(&root);
             break;
         case 0:
