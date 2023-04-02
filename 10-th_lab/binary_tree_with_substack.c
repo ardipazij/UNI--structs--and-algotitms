@@ -68,3 +68,37 @@ void print_in_direct_order(Tree_node * head, int depth){
     print_in_direct_order(head->left, depth + 5);
     print_in_direct_order(head->right, depth + 5);
 }
+void print_in_simmetric_order_with_stack(Tree_node * head){
+    Stack * root = calloc(1, sizeof(Stack));
+    root->depth = -1;
+    root->prev = head;
+    root->next = NULL;
+    int depth = 0;
+    Tree_node * current = head;
+    while(current != NULL || depth >= 0){
+        while (current != NULL)
+		{
+			Stack* node = calloc(1, sizeof(Stack));
+			node->depth = depth;
+			node->prev = current;
+			node->next = root;
+			root = node;
+			current = current->left;
+			depth += 4;
+		}
+        depth = root->depth;
+
+		current = root->prev;
+		Stack* temporary = root;
+		root = root->next;
+		free(temporary);
+
+		for (int i = 0; i < depth; i++){
+            printf(" ");
+        }
+        printf("%d\n", current->data);
+
+		current = current->right;
+		depth += 4;
+    }
+}

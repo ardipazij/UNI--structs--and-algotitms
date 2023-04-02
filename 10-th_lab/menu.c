@@ -36,7 +36,7 @@ void output(Tree_node * head){
     }
     printf("Как вы хотите вывести дерево?\n");
     printf("1. B прямом порядке\n");
-    printf("2. B симметричном порядке\n");
+    printf("2. B симметричном порядке(не рекурсивно)\n");
     printf("3. B обратно-симметричном порядке\n");
     int n;
     if(get_number(&n)){
@@ -48,7 +48,7 @@ void output(Tree_node * head){
         print_in_direct_order(head, 0);
         break;
     case 2:
-        print_in_symmetric_order(head, 0);
+        print_in_simmetric_order_with_stack(head);
         break;
     case 3:
         print_in_inverse_symmetric_order(head, 0);
