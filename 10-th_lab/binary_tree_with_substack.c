@@ -75,7 +75,7 @@ void print_in_simmetric_order_with_stack(Tree_node * head){
     root->next = NULL;
     int depth = 0;
     Tree_node * current = head;
-    while(current != NULL || depth >= 0){
+    while(current != NULL || root->depth >= 0){
         while (current != NULL)
 		{
 			Stack* node = calloc(1, sizeof(Stack));
