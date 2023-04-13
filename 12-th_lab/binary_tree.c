@@ -1,14 +1,13 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "binary_tree.h"
-// A node in the binary search tree
-int is_empty(Tree_node * root){
-    return (root == NULL); 
+int is_empty(Tree_node * head){
+    return (head == NULL); 
 }
 
-void add_to_tree(Tree_node ** root, int value){
+void add_to_tree(Tree_node ** head, int value){
     Tree_node * parent;
-    Tree_node * current = *root;
+    Tree_node * current = *head;
     while(current != NULL){
         parent = current;
         if(value < parent->key){
@@ -28,7 +27,7 @@ void add_to_tree(Tree_node ** root, int value){
     new_node->right = NULL;
     new_node->parent = parent;
     if(parent = NULL){
-        *root = new_node;
+        *head = new_node;
     }
     if(parent->key < new_node->key){
         parent->right = new_node;
@@ -37,8 +36,28 @@ void add_to_tree(Tree_node ** root, int value){
          parent->left = new_node;
     }
 }
+void destroy(Tree_node ** head)
+{
+	if ((*head) == NULL)
+		return;
+    Tree_node * tmp = (*head);
+	destroy(&tmp->left);
+	destroy(&tmp->right);
+	free(*head);
+    (*head) = NULL;
+}
 
-
+void print_in_symmetric_order(Tree_node * head, int depth){
+    if(head == NULL){
+        return;
+    }
+    print_in_symmetric_order(head->left, depth + 5);
+    for(int i = 0; i < depth; i++){
+        printf(" ");
+    }
+    printf("%d (%d)\n",head->key, head->count);
+    print_in_symmetric_order(head->right, depth + 5);
+}
 // // Function to create a new node
 // struct Node* newNode(int key) {
 //     struct Node* node = (struct Node*) malloc(sizeof(struct Node));
