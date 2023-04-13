@@ -6,14 +6,14 @@ int is_empty(Tree_node * head){
 }
 
 void add_to_tree(Tree_node ** head, int value){
-    Tree_node * parent;
+    Tree_node * parent = NULL;
     Tree_node * current = *head;
     while(current != NULL){
         parent = current;
         if(value < parent->key){
             current = current->left;
         }
-        if(value < parent->key){
+        else if(value > parent->key){
             current = current->right;
         }
         else{
@@ -26,10 +26,12 @@ void add_to_tree(Tree_node ** head, int value){
     new_node->left = NULL;
     new_node->right = NULL;
     new_node->parent = parent;
-    if(parent = NULL){
+    new_node->count = 1;
+    if(parent == NULL){
         *head = new_node;
+        return;
     }
-    if(parent->key < new_node->key){
+    else if(parent->key < new_node->key){
         parent->right = new_node;
     }
     else{
