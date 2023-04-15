@@ -16,6 +16,9 @@ int main(){
         case 1:
             add(&root);
             break;
+        case 2:
+            find(root);
+            break;
         case 3:
             output(root);
             break;

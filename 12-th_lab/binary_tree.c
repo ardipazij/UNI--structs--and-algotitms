@@ -60,6 +60,18 @@ void print_in_symmetric_order(Tree_node * head, int depth){
     printf("%d (%d)\n",head->key, head->count);
     print_in_symmetric_order(head->right, depth + 5);
 }
+
+Tree_node * find_elem (Tree_node * head, int value){
+    if(head == NULL || head->key == value){
+        return head;
+    }
+    if (head->key < value){
+        return find_elem(head->right, value);
+    }
+    else{
+        return find_elem(head->left, value);
+    }
+}
 // // Function to create a new node
 // struct Node* newNode(int key) {
 //     struct Node* node = (struct Node*) malloc(sizeof(struct Node));

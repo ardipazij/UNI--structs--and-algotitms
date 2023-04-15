@@ -5,4 +5,5 @@ int get_number(int * n);
 void print_info();
 void add(Tree_node ** head);
 void output(Tree_node * head);
+void find(Tree_node * head);
 #endif

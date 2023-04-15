@@ -13,7 +13,7 @@ int get_number(int * n){
 
 void print_info(){
     printf("1. Случайное создание дерева.\n ");
-   // printf("2. Поиск элемента в дереве \n");
+    printf("2. Поиск элемента в дереве \n");
     printf("3. Вывод дерева. \n");
     printf("4. Удаление дерева. \n");
     printf("0. Выход из программы. \n");
@@ -38,4 +38,28 @@ void output(Tree_node * head){
         return;
     }
     print_in_symmetric_order(head, 0);
+}
+
+void find(Tree_node * root){
+    if(root == NULL){
+        printf("Дерево пусто.\n");
+        return;
+    }
+    else{
+        int data;
+        printf("Введите значение ключа для поиска\n");
+        if(get_number(&data)){
+            printf("Ошибка ввода \n");
+            return;
+        }
+        Tree_node * current = find_elem(root, data);
+        if(current != NULL){
+            printf("Элемент с ключом %d найден. Количество появлений -- %d\n", current->key, current->count );
+            return;
+        }
+        else{
+            printf("Элемент не найден\n");
+            return;
+        }
+    }
 }
