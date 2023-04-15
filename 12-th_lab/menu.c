@@ -15,11 +15,16 @@ void print_info(){
     printf("1. Случайное создание дерева.\n ");
     printf("2. Поиск элемента в дереве \n");
     printf("3. Вывод дерева. \n");
-    printf("4. Удаление дерева. \n");
+    printf("4. Удаление вершины\n");
+    printf("5. Удаление дерева. \n");
     printf("0. Выход из программы. \n");
 }
 
 void add(Tree_node ** head){
+    // if(*head != NULL){
+    //     printf("Для создания нового удалите старое дерево\n");
+    //     return;
+    // }
     printf("Введите количество элментов, которое вы хотите добавить(от 1 до 50)\n");
     int n;
     if(get_number(&n) || n > 50 || n < 1){
@@ -62,4 +67,19 @@ void find(Tree_node * root){
             return;
         }
     }
+}
+
+void delete_node(Tree_node ** head){
+    printf("Введите ключ вершины, которую вы хотите удалить\n");
+    int data;
+    if(get_number(&data)){
+        printf("Ошибка ввода\n");
+        return;
+    }
+    remove_elem(head, data);
+}
+
+void destroy_tree(Tree_node **  head){
+    destroy(head);
+   // *head = NULL;
 }

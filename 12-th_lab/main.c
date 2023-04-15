@@ -23,7 +23,10 @@ int main(){
             output(root);
             break;
         case 4:
-            destroy(&root);
+            delete_node(&root);
+            break;
+        case 5:
+            destroy_tree(&root);
             break;
         case 0:
             flag = 1;

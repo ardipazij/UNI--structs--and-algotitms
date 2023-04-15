@@ -72,6 +72,62 @@ Tree_node * find_elem (Tree_node * head, int value){
         return find_elem(head->left, value);
     }
 }
+
+void remove_elem(Tree_node ** head, int value){
+    Tree_node * current = find_elem(*head, value);
+    if (current == NULL){
+        printf("Элемента с данным ключом не существует\n");
+        return;
+    }
+    if (current->count > 1){
+        current->count--;
+        return;
+    }
+    if (current->left == NULL && current->right == NULL){
+        if(current->parent->left == current){
+            current->parent->left = NULL;
+        }
+        else{
+             current->parent->right = NULL;
+        }
+        free(current);
+        return;
+    }
+    else if(current->left == NULL){
+        if(current->parent == NULL){
+            current->right->parent = NULL;
+            (*head) = current->right;
+        }
+        else{
+            current->right->parent = current->parent;
+            if(current == current->parent->left){
+                current->parent->left = current->right;
+            }
+            else{
+                current->parent->right = current->right;
+            }
+        }
+    }
+    else if(current->right == NULL){
+        if(current->parent == NULL){
+            current->left->parent = NULL;
+            (*head) = current->left;
+        }
+        else{
+            current->left->parent = current->parent;
+            if(current == current->parent->left){
+                current->parent->left = current->left;
+            }
+            else{
+                current->parent->right = current->left;
+            }
+        }
+    }
+    else{
+        ;
+    }
+    free(current);
+}
 // // Function to create a new node
 // struct Node* newNode(int key) {
 //     struct Node* node = (struct Node*) malloc(sizeof(struct Node));
