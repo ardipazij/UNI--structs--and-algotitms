@@ -14,4 +14,5 @@ void destroy(Tree_node ** head);
 void print_in_symmetric_order(Tree_node * head, int depth);
 Tree_node * find_elem(Tree_node * head, int value);
 void remove_elem(Tree_node ** head, int value);
+Tree_node * minimum(Tree_node * head);
 #endif
