@@ -12,7 +12,7 @@ int get_number(int * n){
 } 
 
 void print_info(){
-    printf("1. Cоздание дерева/добавление элемента в дерево.\n ");
+    printf("\n1. Cоздание дерева/добавление элемента в дерево.\n");
     printf("2. Поиск элемента в дереве \n");
     printf("3. Вывод дерева. \n");
     printf("4. Удаление вершины\n");
@@ -60,7 +60,19 @@ void output(Tree_node * head){
         printf("Дерево пусто\n");
         return;
     }
-    print_in_symmetric_order(head, 0);
+    printf("Вывод в симметричном порядке(1) или вывод по возрастанию ключа(0)?\n");
+    int flag;
+    if(get_number(&flag)){
+        printf("Неверынй ввод\n");
+        return;
+    }
+    if (flag == 1){
+        print_in_symmetric_order(head, 0);
+    }
+    else{
+        print_in_minmax_order(head);
+    }
+    
 }
 
 void find(Tree_node * root){

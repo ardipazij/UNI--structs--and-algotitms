@@ -162,3 +162,12 @@ void remove_elem(Tree_node ** head, int value){
         }
     free(current);
 }
+
+void print_in_minmax_order(Tree_node * head){
+    if(head == NULL){
+        return;
+    }
+    print_in_minmax_order(head->left);
+    printf("%d (%d) ",head->key, head->count);
+    print_in_minmax_order(head->right);
+}
