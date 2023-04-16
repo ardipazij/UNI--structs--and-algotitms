@@ -96,3 +96,51 @@ void insert_sort(int * items, int n){
     free(temp_array);
     printf("\n %lld -- число сравнений \n %lld -- число перестановок\n", comparisons, assigments);
 }
+void swap(int *a, int *b) {
+  int t = *a;
+  *a = *b;
+  *b = t;
+}
+void heapify(int * items, int n, int i, long long int * comparions, long long int * assigments){
+    int largest = i;
+    int left = 2* i + 1;
+    int right = 2 * i + 2;
+    (*comparions)+= 2;
+    if(left < n && items[left] > items[largest]){
+        largest = left;
+    }
+    (*comparions)+= 2;
+    if(right < n && items[right] > items[largest]){
+        largest = right;
+    }
+    (*comparions)++;
+    if(largest != i){
+        swap(&items[i], &items[largest]);
+        (*assigments)+=3;
+        heapify(items, n, largest, comparions, assigments);
+    }
+}
+void heap_sort(int * items, int n){
+    long long int comparisons = 0;
+    long long int assigments = 0;
+    int * temp_array = calloc(n, sizeof(int));
+    for(int k = 0; k < n; k++){
+        printf("%d ", items[k]);
+        temp_array[k] = items[k];
+    }
+    printf("\n"); 
+
+    for(int i = n - 1; i >= 0; --i){
+        heapify(temp_array, n, i, &comparisons, &assigments);
+    }
+    for(int i = n - 1; i>= 0; --i){
+        swap(&temp_array[0], &temp_array[i]);
+        assigments+=3;
+        heapify(temp_array, i, 0, &comparisons, &assigments);
+    }
+    for(int k = 0; k < n; k++){
+        printf("%d ", temp_array[k]);
+    }
+    free(temp_array);
+    printf("\n %lld -- число сравнений \n %lld -- число перестановок\n", comparisons, assigments);
+}

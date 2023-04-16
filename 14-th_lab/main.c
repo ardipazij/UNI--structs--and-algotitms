@@ -28,6 +28,9 @@ int main(){
             insert_sort_for_menu(array, size);
             break;
         case 5:
+            heap_sort_for_menu(array, size);
+            break;
+        case 6:
             destroy_array(&array, &size);
             break;
         case 0:

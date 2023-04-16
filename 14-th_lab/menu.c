@@ -16,7 +16,8 @@ void print_info(){
     printf("2. Сортировка пузырьком \n");
     printf("3. Сортировка выбором \n");
     printf("4. Сортировка заменой\n");
-    printf("5. Удаление массива \n");
+    printf("5. Сортировка кучей \n");
+    printf("6. Удаление массива \n");
     printf("0. Выход из программы\n");
 }
 int numbers_of_element(){
@@ -78,4 +79,12 @@ void insert_sort_for_menu(int * items, int n){
         return;
     }
     insert_sort(items, n);
+}
+
+void heap_sort_for_menu(int * items, int n){
+    if (n == 0){
+        printf("Ошибка обработки массива \n");
+        return;
+    }
+    heap_sort(items, n);
 }
