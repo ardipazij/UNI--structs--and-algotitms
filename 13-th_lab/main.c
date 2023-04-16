@@ -25,7 +25,7 @@ int main(){
             selection_sort_for_menu(array, size);
             break;
         case 4:
-         //   delete_node(&root);
+            insert_sort_for_menu(array, size);
             break;
         case 5:
             destroy_array(&array, &size);

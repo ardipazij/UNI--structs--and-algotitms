@@ -71,3 +71,11 @@ void selection_sort_for_menu(int * items, int n){
     }
     selection_sort(items, n);
 }
+
+void insert_sort_for_menu(int * items, int n){
+    if (n == 0){
+        printf("Ошибка обработки массива \n");
+        return;
+    }
+    insert_sort(items, n);
+}

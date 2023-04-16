@@ -62,3 +62,37 @@ void selection_sort(int * items, int n){
     free(temp_array);
     printf("\n %lld -- число сравнений \n %lld -- число перестановок\n", comparisons, assigments);
 }
+
+void insert_sort(int * items, int n){
+    long long int comparisons = 0;
+    long long int assigments = 0;
+    int * temp_array = calloc(n, sizeof(int));
+    for(int k = 0; k < n; k++){
+        printf("%d ", items[k]);
+        temp_array[k] = items[k];
+    }
+    printf("\n"); 
+
+    int element, j; 
+    for (int i = 1; i < n; i++) { 
+        element = temp_array[i];
+        j = i - 1;
+        while (j >= 0 && temp_array[j] > element) { 
+            temp_array[j + 1] = temp_array[j]; 
+            j = j - 1; 
+            comparisons++;
+            assigments++;
+        }
+        comparisons++;
+        if(temp_array[j + 1] != element){
+            temp_array[j + 1] = element; 
+            assigments++;
+        }
+    } 
+
+    for(int k = 0; k < n; k++){
+        printf("%d ", temp_array[k]);
+    }
+    free(temp_array);
+    printf("\n %lld -- число сравнений \n %lld -- число перестановок\n", comparisons, assigments);
+}
