@@ -18,7 +18,8 @@ void print_info(){
     printf("4. Сортировка заменой\n");
     printf("5. Сортировка кучей \n");
     printf("6. Быстрая сортировка \n");
-    printf("7. Удаление массива \n");
+    printf("7. Shell sorting \n");
+    printf("8. Удаление массива \n");
     printf("0. Выход из программы\n");
 }
 int numbers_of_element(){
@@ -107,4 +108,12 @@ void quick_sort_for_menu(int * items, int n){
     }
     free(temp_array);
     printf("\n %lld -- число сравнений \n %lld -- число перестановок\n", comparisons, assigments);
+}
+
+void shell_sort_for_menu(int * items, int n){
+    if (n == 0){
+        printf("Ошибка обработки массива \n");
+        return;
+    }
+    shell_sort(items, n);
 }

@@ -182,8 +182,12 @@ void shell_sort(int * items, int n){
 
     for (int i = n / 2; i > 0; i /= 2) {
         for (int k = i; k < n; ++k) {
-            for (int j = k - i; j >= 0 && temp_array[j] > temp_array[j + i]; j -= i) {
-                swap(temp_array[j], temp_array[j + i]);
+            for (int j = k - i; j >= 0; j -= i) {
+                comparisons++;
+                if(temp_array[j] > temp_array[j + i]){
+                    swap(&temp_array[j], &temp_array[j + i]);
+                    assigments+=3;
+                }
             }
         }
     }
