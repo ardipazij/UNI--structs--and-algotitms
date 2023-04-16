@@ -89,6 +89,11 @@ void remove_elem(Tree_node ** head, int value){
         return;
     }
     if (current->left == NULL && current->right == NULL){
+        if(current->parent == NULL){
+            free(current);
+            (*head) = NULL;
+            return;
+        }
         if(current->parent->left == current){
             current->parent->left = NULL;
         }

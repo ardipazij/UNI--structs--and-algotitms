@@ -12,7 +12,7 @@ int get_number(int * n){
 } 
 
 void print_info(){
-    printf("1. Случайное создание дерева.\n ");
+    printf("1. Cоздание дерева/добавление элемента в дерево.\n ");
     printf("2. Поиск элемента в дереве \n");
     printf("3. Вывод дерева. \n");
     printf("4. Удаление вершины\n");
@@ -25,15 +25,33 @@ void add(Tree_node ** head){
     //     printf("Для создания нового удалите старое дерево\n");
     //     return;
     // }
-    printf("Введите количество элментов, которое вы хотите добавить(от 1 до 50)\n");
-    int n;
-    if(get_number(&n) || n > 50 || n < 1){
-        printf("Error input");
+    printf("Пользовательский ввод(0) или случайное заполнение(1)?(при случайном заполнении старое дерево будет удалено)\n");
+    int flag;
+    if(get_number(&flag)){
+        printf("Неверный ввод\n");
         return;
     }
-    for (int i = 0; i < n; i ++){
-        int f = rand() % 100;
-        add_to_tree(head, f);
+    if(flag == 1){
+        destroy(head);
+        printf("Введите количество элментов, которое вы хотите добавить(от 1 до 50)\n");
+        int n;
+        if(get_number(&n) || n > 50 || n < 1){
+           printf("Error input\n");
+            return;
+         }
+         for (int i = 0; i < n; i ++){
+            int key_rand = rand() % 100;
+            add_to_tree(head, key_rand);
+         }
+    }
+    else if(flag == 0){
+        printf("Введите значение ключа\n");
+        int key;
+        if(get_number(&key)){
+            printf("Неверный ввод\n");
+            return;
+        }
+        add_to_tree(head, key);
     }
 }
 
