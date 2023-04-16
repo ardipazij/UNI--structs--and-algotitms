@@ -22,7 +22,7 @@ int main(){
             buble_sort_for_menu(array, size);
             break;
         case 3:
-        //    output(root);
+            selection_sort_for_menu(array, size);
             break;
         case 4:
          //   delete_node(&root);

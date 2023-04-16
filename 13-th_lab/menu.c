@@ -56,6 +56,18 @@ void buble_sort_for_menu(int * items, int n){
 }
 
 void add(int ** array, int * size){
+    if((*size) != 0){
+        printf("Сначала удалите старый массив \n");
+        return;
+    }
     (*size) = numbers_of_element();
     (*array) = create_array(*size);
+}
+
+void selection_sort_for_menu(int * items, int n){
+    if (n == 0){
+        printf("Ошибка обработки массива \n");
+        return;
+    }
+    selection_sort(items, n);
 }
