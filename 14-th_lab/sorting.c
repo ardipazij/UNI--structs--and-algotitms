@@ -144,3 +144,28 @@ void heap_sort(int * items, int n){
     free(temp_array);
     printf("\n %lld -- число сравнений \n %lld -- число перестановок\n", comparisons, assigments);
 }
+
+
+int partition(int * array, int low, int high, long long int * compariosns, long long int * assigments) {
+  int pivot = array[high];
+  int i = (low - 1);
+  for (int j = low; j < high; j++) {
+    (*compariosns)++;
+    if (array[j] <= pivot) {
+      i++;
+      swap(&array[i], &array[j]);
+      (*assigments)+=3;
+    }
+  }
+  swap(&array[i + 1], &array[high]);
+  (*assigments)+=3;
+  return (i + 1);
+}
+
+void quick_sort(int * array, int low, int high, long long int * comparisons, long long int * assigments) {
+    if (low < high) {
+        int pi = partition(array, low, high, comparisons, assigments);
+        quick_sort(array, low, pi - 1, comparisons, assigments);
+        quick_sort(array, pi + 1, high, comparisons, assigments);
+  }
+}

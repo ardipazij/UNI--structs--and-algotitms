@@ -31,6 +31,9 @@ int main(){
             heap_sort_for_menu(array, size);
             break;
         case 6:
+            quick_sort_for_menu(array, size);
+            break;
+        case 7:
             destroy_array(&array, &size);
             break;
         case 0:

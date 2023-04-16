@@ -17,7 +17,8 @@ void print_info(){
     printf("3. Сортировка выбором \n");
     printf("4. Сортировка заменой\n");
     printf("5. Сортировка кучей \n");
-    printf("6. Удаление массива \n");
+    printf("6. Быстрая сортировка \n");
+    printf("7. Удаление массива \n");
     printf("0. Выход из программы\n");
 }
 int numbers_of_element(){
@@ -87,4 +88,23 @@ void heap_sort_for_menu(int * items, int n){
         return;
     }
     heap_sort(items, n);
+}
+
+void quick_sort_for_menu(int * items, int n){
+    long long int comparisons = 0;
+    long long int assigments = 0;
+    int * temp_array = calloc(n, sizeof(int));
+    for(int k = 0; k < n; k++){
+        printf("%d ", items[k]);
+        temp_array[k] = items[k];
+    }
+    printf("\n"); 
+
+    quick_sort(temp_array, 0, n-1, &comparisons, &assigments);
+    
+    for(int k = 0; k < n; k++){
+        printf("%d ", temp_array[k]);
+    }
+    free(temp_array);
+    printf("\n %lld -- число сравнений \n %lld -- число перестановок\n", comparisons, assigments);
 }
