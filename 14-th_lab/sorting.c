@@ -169,3 +169,28 @@ void quick_sort(int * array, int low, int high, long long int * comparisons, lon
         quick_sort(array, pi + 1, high, comparisons, assigments);
   }
 }
+
+void shell_sort(int * items, int n){
+    long long int comparisons = 0;
+    long long int assigments = 0;
+    int * temp_array = calloc(n, sizeof(int));
+    for(int k = 0; k < n; k++){
+        printf("%d ", items[k]);
+        temp_array[k] = items[k];
+    }
+    printf("\n"); 
+
+    for (int i = n / 2; i > 0; i /= 2) {
+        for (int k = i; k < n; ++k) {
+            for (int j = k - i; j >= 0 && temp_array[j] > temp_array[j + i]; j -= i) {
+                swap(temp_array[j], temp_array[j + i]);
+            }
+        }
+    }
+
+    for(int k = 0; k < n; k++){
+        printf("%d ", temp_array[k]);
+    }
+    free(temp_array);
+    printf("\n %lld -- число сравнений \n %lld -- число перестановок\n", comparisons, assigments);
+}
