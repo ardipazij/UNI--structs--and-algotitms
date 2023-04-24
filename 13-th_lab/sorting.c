@@ -41,11 +41,12 @@ void selection_sort(int * items, int n){
 
     for(int i = 0; i < n - 1; i++) {
         int position = i;
-        for(int j = i + 1; j < n; j++){
+      //  assigments++;
+        for(int j = i + 1; j < n - 1; j++){
             comparisons++;
             if(temp_array[position] > temp_array[j]){
                 position=j;
-                assigments++;
+               // assigments++;
             }
         }
         comparisons++;
@@ -74,18 +75,20 @@ void insert_sort(int * items, int n){
     printf("\n"); 
 
     int element, j; 
-    for (int i = 1; i < n; i++) { 
+    for (int i = 1; i <= n; i++) { 
+        assigments++;
         element = temp_array[i];
         j = i - 1;
+        comparisons++;
         while (j >= 0 && temp_array[j] > element) { 
-            temp_array[j + 1] = temp_array[j]; 
-            j = j - 1; 
+            temp_array[j + 1] = temp_array[j];
+            j = j - 1;
             comparisons++;
             assigments++;
         }
         comparisons++;
-        if(temp_array[j + 1] != element){
-            temp_array[j + 1] = element; 
+        if(temp_array[j+1] != element){
+           temp_array[j + 1] = element; 
             assigments++;
         }
     } 
