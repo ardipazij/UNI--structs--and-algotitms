@@ -211,6 +211,45 @@ void shell_sort(int * items, int n){
         temp_array[k] = items[k];
     }
     printf("\n"); 
+    for(int gap = n / 2; gap > 0; gap /= 2){
+        for (int i = gap; i < n; i++) { 
+            assigments++;
+            int element = temp_array[i];
+            int j;
+        comparisons++;
+       for(j = i; j >= gap && temp_array[j - gap] > element; j -= gap) { 
+            temp_array[j] = temp_array[j - gap];
+            comparisons++;
+            assigments++;
+        }
+        // comparisons++;
+        // if(temp_array[j] != element){
+        //     temp_array[j] = element;
+        //     assigments++;
+        // }
+
+        temp_array[j] = element;
+        assigments++;
+        
+        }
+    }
+
+    for(int k = 0; k < n; k++){
+        printf("%d ", temp_array[k]);
+    }
+    free(temp_array);
+    printf("\n %lld -- число сравнений \n %lld -- число перестановок\n", comparisons, assigments);
+}
+
+void shell_sort_mod(int * items, int n){
+    long long int comparisons = 0;
+    long long int assigments = 0;
+    int * temp_array = calloc(n, sizeof(int));
+    for(int k = 0; k < n; k++){
+        printf("%d ", items[k]);
+        temp_array[k] = items[k];
+    }
+    printf("\n"); 
     for (int i = n / 2; i > 0; i /= 2) {
         for (int k = i; k < n; ++k) {
             comparisons++;

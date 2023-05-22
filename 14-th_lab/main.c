@@ -37,6 +37,9 @@ int main(){
             shell_sort_for_menu(array, size);
             break;
         case 8:
+            shell_sort_mod_for_menu(array, size);
+            break;
+        case 9:
             destroy_array(&array, &size);
             break;
         case 0:
