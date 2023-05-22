@@ -41,11 +41,12 @@ void selection_sort(int * items, int n){
 
     for(int i = 0; i < n - 1; i++) {
         int position = i;
-        for(int j = i + 1; j < n; j++){
+      //  assigments++;
+        for(int j = i + 1; j < n - 1; j++){
             comparisons++;
             if(temp_array[position] > temp_array[j]){
                 position=j;
-                assigments++;
+               // assigments++;
             }
         }
         comparisons++;
@@ -75,17 +76,19 @@ void insert_sort(int * items, int n){
 
     int element, j; 
     for (int i = 1; i < n; i++) { 
+        assigments++;
         element = temp_array[i];
         j = i - 1;
+        comparisons++;
         while (j >= 0 && temp_array[j] > element) { 
-            temp_array[j + 1] = temp_array[j]; 
-            j = j - 1; 
+            temp_array[j + 1] = temp_array[j];
+            j = j - 1;
             comparisons++;
             assigments++;
         }
         comparisons++;
-        if(temp_array[j + 1] != element){
-            temp_array[j + 1] = element; 
+        if(temp_array[j+1] != element){
+           temp_array[j + 1] = element; 
             assigments++;
         }
     } 
@@ -105,15 +108,15 @@ void heapify(int * items, int n, int i, long long int * comparions, long long in
     int largest = i;
     int left = 2* i + 1;
     int right = 2 * i + 2;
-    (*comparions)+= 2;
+    (*comparions)++;
     if(left < n && items[left] > items[largest]){
         largest = left;
     }
-    (*comparions)+= 2;
+    (*comparions)++;
     if(right < n && items[right] > items[largest]){
         largest = right;
     }
-    (*comparions)++;
+   // (*comparions)++;
     if(largest != i){
         swap(&items[i], &items[largest]);
         (*assigments)+=3;
@@ -145,30 +148,59 @@ void heap_sort(int * items, int n){
     printf("\n %lld -- число сравнений \n %lld -- число перестановок\n", comparisons, assigments);
 }
 
-
-int partition(int * array, int low, int high, long long int * compariosns, long long int * assigments) {
-  int pivot = array[high];
-  int i = (low - 1);
-  for (int j = low; j < high; j++) {
-    (*compariosns)++;
-    if (array[j] <= pivot) {
-      i++;
-      swap(&array[i], &array[j]);
-      (*assigments)+=3;
+void quick_sort(int * array, int left, int right, long long int * comparisons, long long int * assigments){
+    int  i = left;
+    int j = right;
+    int temp;
+    int pivot = array[(left + right) / 2];
+    while( i <= j){
+        while(array[i] < pivot){
+            i++;
+            (*comparisons)++;
+        }
+        while(array[j] > pivot){
+            j--;
+            (*comparisons)++;
+        }
+        if(i <= j){
+            temp = array[i];
+            array[i] = array[j];
+            array[j] = temp;
+            (*assigments)+=3;
+            i++;
+            j--;
+        }
     }
-  }
-  swap(&array[i + 1], &array[high]);
-  (*assigments)+=3;
-  return (i + 1);
+    if(left < j){
+        quick_sort(array, left, j, comparisons, assigments);
+    }
+    if (i < right){
+        quick_sort(array, i, right, comparisons, assigments);
+    }
 }
+// int partition(int * array, int low, int high, long long int * compariosns, long long int * assigments) {
+//   int pivot = array[high];
+//   int i = (low - 1);
+//   for (int j = low; j < high; j++) {
+//     (*compariosns)++;
+//     if (array[j] <= pivot) {
+//       i++;
+//       swap(&array[i], &array[j]);
+//       (*assigments)+=3;
+//     }
+//   }
+//   swap(&array[i + 1], &array[high]);
+//   (*assigments)+=3;
+//   return (i + 1);
+// }
 
-void quick_sort(int * array, int low, int high, long long int * comparisons, long long int * assigments) {
-    if (low < high) {
-        int pi = partition(array, low, high, comparisons, assigments);
-        quick_sort(array, low, pi - 1, comparisons, assigments);
-        quick_sort(array, pi + 1, high, comparisons, assigments);
-  }
-}
+// void quick_sort(int * array, int low, int high, long long int * comparisons, long long int * assigments) {
+//     if (low < high) {
+//         int pi = partition(array, low, high, comparisons, assigments);
+//         quick_sort(array, low, pi - 1, comparisons, assigments);
+//         quick_sort(array, pi + 1, high, comparisons, assigments);
+//   }
+// }
 
 void shell_sort(int * items, int n){
     long long int comparisons = 0;
@@ -179,15 +211,13 @@ void shell_sort(int * items, int n){
         temp_array[k] = items[k];
     }
     printf("\n"); 
-
     for (int i = n / 2; i > 0; i /= 2) {
         for (int k = i; k < n; ++k) {
-            for (int j = k - i; j >= 0; j -= i) {
+            comparisons++;
+            for (int j = k - i; j >= 0  && (temp_array[j] > temp_array[j + i]); j -= i) {
                 comparisons++;
-                if(temp_array[j] > temp_array[j + i]){
-                    swap(&temp_array[j], &temp_array[j + i]);
-                    assigments+=3;
-                }
+                swap(&temp_array[j], &temp_array[j + i]);
+                assigments+=3;
             }
         }
     }
