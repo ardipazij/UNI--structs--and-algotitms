@@ -13,13 +13,23 @@ int main(){
         if(get_number(&n)){
             printf("Ошибка ввода \n");
         }
-        switch (n)
+        switch (n
+        )
         {
         case 1:
             add(&array, &size);
             break;
         case 2:
             radix_sort_for_menu(array, size);
+            break;
+        case 3:
+            bucket_sort_for_menu(array, size);
+            break;
+        case 4:
+            generalized_bucket_sort_for_menu(array, size);
+            break;
+        case 5:
+            destroy_array(&array, &size);
             break;
         case 0:
             flag = 1;
