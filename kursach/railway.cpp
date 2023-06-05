@@ -62,7 +62,7 @@ void Railway::popDepot(){
         std::cout << "У железной дороге нет депо для удаления" << std::endl;
 		return;
     }
-    Railway_depot * cur{ root_ }; 
+    Railway_depot * cur{ root_ };
 	root_ = root_->GetPrev();
 	delete cur;
 	return;

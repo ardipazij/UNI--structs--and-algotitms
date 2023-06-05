@@ -101,7 +101,7 @@ void Railway_depot::RemoveTrain(int id_to_remove){
 		std::cout << "регистрационный номер поезда для удаления не найден" << std::endl;
 		return;
 	}
-	trains[find_ind] = Train();
+	trains[find_ind].setId(-1);
 	for (int i = find_ind; i < size_ - 1; i++) {
 		trains[i] = trains[i + 1];
 	}

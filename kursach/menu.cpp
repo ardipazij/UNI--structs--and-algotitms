@@ -9,9 +9,10 @@ void Menu::print_info(){
 	std::cout << "6 - Поиск поезда" << std::endl;
     std::cout << "7 - Вывод информации о состоянии железной дороги на экарн" << std::endl;
     std::cout << "8 - изменить имя железной дороги." << std::endl;
-	std::cout << "9 - выгрузить содержимое железной дороги в файл." << std::endl;  ///
-	std::cout << "10 - загрузить содержимое железной дороги из файл." << std::endl;  ///
-    std::cout << "0 - выйти из программы." << std::endl;
+	std::cout << "9 - выгрузить содержимое железной дороги в файл." << std::endl; 
+	std::cout << "10 - загрузить содержимое железной дороги из файл." << std::endl; 
+    std::cout << "11 - Удалить железную дорогу и создать новую" << std::endl; 
+    std::cout << "-1 - выйти из программы." << std::endl;
 }
 
 int Menu::getNumber()
@@ -54,7 +55,8 @@ void Menu::Depot_search( Railway railway)
 }
 
 void Menu::Console_output( Railway railway)
-{
+{   
+    std::cout << railway.GetName();
 	std::cout << '\n';
 	railway.printDepots();
 }
@@ -98,97 +100,109 @@ void Menu::Train_add(Railway& railway)
 	currentDepot->AddTrain(model, id);
 }
 // /////////////////////////////////////////////////////////////////
-// void Menu::handleAirplaneSearch(const Airline& airline)
-// {
-// 	if (airline.isAirportListEmpty())
-// 	{
-// 		std::cout << "\nthe airport list is empty\n";
-// 		return;
-// 	}
+void Menu::Train_search(Railway& railway)
+{
+	if (railway.IsRailwayEmpty())
+	{
+		std::cout << "\nУ железнодорожной дороги отстутствуют депо для поиска\n";
+		return;
+	}
 
-// 	std::cout << "enter the model of the airplane: ";
-// 	std::string model{ getString() };
-// 	Airport* current{ airline.getHead() };
-// 	int numberOfFoundAirplanes{ 0 };
-// 	while (current != nullptr)
-// 	{
-// 		if (current->findAirplane(model))
-// 		{
-// 			std::cout << "airplane " << model << " found in airport " << current->getName() << '\n';
-// 			++numberOfFoundAirplanes;
-// 		}
+	std::cout << "Введите регистрационный номер поезда";
+	int train_id{ getNumber()};
+	Railway_depot* current{ railway.GetRoot() };
+	int numberOfFoundTrains{ 0 };
+	while (current != nullptr)
+	{
+		if (current->FindTrain(train_id))
+		{
+			std::cout << "Поезд с регистрационным номером " << train_id << " найден в депо номер " << current->GetDepot_number() << '\n';
+			++numberOfFoundTrains;
+		}
 
-// 		current = current->getNext();
-// 	}
+		current = current->GetPrev();
+	}
 
-// 	if (numberOfFoundAirplanes == 0)
-// 		std::cout << "airplane " << model << " was not found\n";
-// }
+	if (numberOfFoundTrains == 0)
+		std::cout << "Поезд с регистрационным номером " << train_id << " не найден\n";
+}
 
-// void Menu::handleAirplaneRemoval(Airline& airline)
-// {
-// 	if (airline.isAirportListEmpty())
-// 	{
-// 		std::cout << "\nthe airport list is empty\n";
-// 		return;
-// 	}
+void Menu::Train_delete(Railway& railway)
+{
+	if (railway.IsRailwayEmpty())
+	{
+		std::cout << "\nУ железной дороги отсутствуют депо для удаления\n";
+		return;
+	}
 
-// 	std::cout << "\nenter airplane name to remove: ";
-// 	std::string model{ getString() };
-// 	Airport* current{ airline.getHead() };
-// 	while (current != nullptr)
-// 	{
-// 		if (current->removeAirplane(model))
-// 			std::cout << "removed airplane " << model << " from airport "
-// 				<< current->getName() << '\n';
-// 		current = current->getNext();
-// 	}
-// }
+	std::cout << "\n Введите регистрационный номер поезда для удаления " << '\n';
+	int id{ getNumber() };
+	Railway_depot * current{ railway.GetRoot() };
+	while (current != nullptr)
+	{
+		if (current->FindTrain(id))
+            current->RemoveTrain(id);
+			std::cout << "поезд с регистрационным номером" << id << "удален из депо номер"
+				<< current->GetDepot_number() << '\n';
+		current = current->GetPrev();
+	}
+}
 
-// void Menu::handleAirlineClearing(Airline& airline)
-// {
-// 	airline.~Airline();
-// 	std::cout << "\nenter the name for the new airline: ";
-// 	std::string airlineName{ getString() };
-// 	airline = Airline{ airlineName };
-// }
+void Menu::Railway_removing(Railway& railway)
+{
+	railway.~Railway();
+	std::cout << "\nВведите название новой железной дороги\n ";
+	std::string name{ getString() };
+	railway = Railway{name};
+}
 
-// void Menu::handleAirlineNameChange(Airline& airline)
-// {
-// 	std::cout << "\nenter the name for the new airline: ";
-// 	std::string airlineName{ getString() };
-// 	airline.setName(airlineName);
-// }
-// void Menu::handleCommand(Railway& railway, int command)
-// {
-// 	switch (command)
-// 	{
-// 		case 1:
-// 			Railway_add(railway);
-// 			break;
-// 		case 2:
-// 			handleAirportSearch(airline);
-// 			break;
-// 		case 3:
-// 			handleAirlinePrinting(airline);
-// 			break;
-// 		case 4:
-// 			handleAirportRemoval(airline);
-// 			break;
-// 		case 5:
-// 			handleAirplaneAddition(airline);
-// 			break;
-// 		case 6:
-// 			handleAirplaneSearch(airline);
-// 			break;
-// 		case 7:
-// 			handleAirplaneRemoval(airline);
-// 			break;
-// 		case 8:
-// 			handleAirlineClearing(airline);
-// 			break;
-// 		case 9:
-// 			handleAirlineNameChange(airline);
-// 			break;
-// 	}
-// }
+void Menu::Railway_NameChange(Railway& railway)
+{
+	std::cout << "\n Введите новое название железной дороги " << '\n';
+	std::string new_name{ getString() };
+	railway.SetName(new_name);
+}
+void Menu::handleCommand(Railway& railway, int command)
+{
+	switch (command)
+	{
+		case 1:
+			Railway_add(railway);
+			break;
+		case 2:
+			Train_add(railway);
+			break;
+		case 3:
+			Delete_Depot(railway);
+			break;
+		case 4:
+			Train_delete(railway);
+			break;
+		case 5:
+			Depot_search(railway);
+			break;
+		case 6:
+			Train_search(railway);
+			break;
+		case 7:
+			Console_output(railway);
+			break;
+		case 8:
+			Railway_NameChange(railway);
+			break;
+		case 11:
+			Railway_removing(railway);
+			break;
+	}
+}
+
+void Menu::runMenuLoop(){
+    Railway railway{};
+   int command{};
+	while (command != -1)
+	{
+		print_info();
+		command = getNumber();
+		handleCommand(railway, command);
+	}
+}
