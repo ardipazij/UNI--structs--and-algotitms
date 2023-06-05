@@ -1,6 +1,7 @@
 #pragma once
 
 #include <string>
+#include <iostream>
 
 class Train {
 private:
@@ -9,7 +10,7 @@ private:
 public:
     Train();
     Train(const std::string& model, int id);
-    
+
     void setModel(const std::string& model);
 	void setId(int id);
 

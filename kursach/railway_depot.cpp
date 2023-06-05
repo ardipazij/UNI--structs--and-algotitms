@@ -1,9 +1,9 @@
 #include "railway_depot.h"
 
 Railway_depot::Railway_depot():
-    size_(0),
-    depot_number_(-1),
-    prev_(nullptr)
+    depot_number_{-1},
+    size_{0},
+    prev_{nullptr}
 {
     InitRailway_depot();
 }
@@ -15,9 +15,9 @@ void Railway_depot::InitRailway_depot(){
 }
 
 Railway_depot::Railway_depot(int depot_number):
-    size_(0),
-    depot_number_(depot_number),
-    prev_(nullptr)
+    depot_number_{depot_number},
+    size_{0},
+    prev_{nullptr}
 {
     InitRailway_depot();
 }
@@ -52,13 +52,17 @@ void Railway_depot::AddTrain(const std::string& model, int id) {
 		std::cout << "В депо нет мест для регистрации новых поездов" << std::endl;
 		return;
 	}
+    if(FindTrain(id) != -1){
+        std::cout << "Поезд с таким регистрационным номером уже есть" << std::endl;
+		return;
+    }
 	Train new_train= Train(model,id);
 	if (IsDepotEmpty()) {
 		trains[0] = new_train;
 	}
 	else {
-		int i{ 0 };
-		for (i; i < size_; i++) {
+		int i;
+		for (i = 0; i < size_; i++) {
 			if ( trains[i].getId() > new_train.getId()) {
 				for (int j = size_; j > i; j--) {
 					trains[j] = trains[j - 1];
@@ -102,4 +106,18 @@ void Railway_depot::RemoveTrain(int id_to_remove){
 		trains[i] = trains[i + 1];
 	}
 	size_--;
+}
+
+void Railway_depot::PrintTrain()
+{
+	if (IsDepotEmpty())
+	{
+		std::cout << "\nДепо пусто\n";
+		return;
+	}
+    int i;
+    for(i = 0; i < size_; i++){
+        std::cout << "Поезд: " << trains[i].getId() << " (" <<
+			trains[i].getModel() << ")\n";
+    }
 }
