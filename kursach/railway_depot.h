@@ -27,8 +27,8 @@ class Railway_depot {
 	    int GetDepot_number() const;
 	    Railway_depot* GetPrev() const;
 
-	    void AddTrain(const std::string& adress, int new_cash_machine_id);
+	    void AddTrain(const std::string& model, int id);
 	    void RemoveTrain(int id_to_remove);
 	    int FindTrain(int search_id);
 
-}
+};
