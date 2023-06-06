@@ -210,7 +210,15 @@ void Menu::handleCommand(Railway& railway, int command)
 
 void Menu::runMenuLoop(){
     Railway railway{};
-   int command{};
+    int command{};
+    File file{};
+    if (!file.readFromFile(railway, "input.txt"))
+	{
+		std::cout << "Введите название железной дороги \n";
+		std::string Name{ getString() };
+		railway.SetName(Name);
+	}
+
 	while (command != -1)
 	{
 		print_info();
