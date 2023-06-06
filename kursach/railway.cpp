@@ -13,26 +13,25 @@ Railway::Railway(const std::string& name):
 }
 
 Railway::~Railway(){
-    Railway_depot* current{ root_ };
-	Railway_depot* old{ current };
-	while (current != nullptr)
+	Railway_depot* old{ root_};
+	while (root_ != nullptr)
 	{
-		current = current->GetPrev();
+		root_ = root_->GetPrev();
 		delete old;
-		old = current;
-	}
+		old = root_;
+	}   
 }
 
-std::string&  Railway::GetName(){
+std::string Railway::GetName() const{
     return name_;
 }
 void Railway::SetName(const std::string& name){
     name_ = name;
 }
-Railway_depot * Railway::GetRoot(){
+Railway_depot * Railway::GetRoot() const{
     return root_;
 }
-bool Railway::IsRailwayEmpty(){
+bool Railway::IsRailwayEmpty() const{
     return root_ == nullptr;
 }
 bool Railway::findDepot(int depot_number)
@@ -53,7 +52,7 @@ void Railway::pushDepot(int depot_number){
         std::cout << "Депо с таким номером уже есть" << std::endl;
         return;
     }
-    Railway_depot* new_depot{ new Railway_depot(depot_number) };
+    Railway_depot* new_depot{ new Railway_depot{depot_number} };
 	new_depot->SetPrev(root_);
     root_ = new_depot;
 }
@@ -62,8 +61,8 @@ void Railway::popDepot(){
         std::cout << "У железной дороге нет депо для удаления" << std::endl;
 		return;
     }
-    Railway_depot * cur{ root_ };
-	root_ = root_->GetPrev();
+    Railway_depot * cur = root_ ;   
+	root_ = root_-> GetPrev();
 	delete cur;
 	return;
 }
@@ -93,19 +92,18 @@ void Railway::remove_train_from_depot(int depot_number, int id){
 	current->RemoveTrain(id);
 }
 
-void Railway::printDepots(){
+void Railway::printDepots() const{
     if (IsRailwayEmpty())
 	{
 		std::cout << "\nЖелезная дорога не имеет депо\n";
 		return;
 	}
 
-	Railway_depot * current {root_};
-	while (current != nullptr)
+	Railway_depot * temp {root_};
+	while (temp != nullptr)
 	{
-		std::cout << "Депо: " << current->GetDepot_number() << '\n';
-		current->PrintTrain();
-		current = current->GetPrev();
+		std::cout << "Депо: " << temp->GetDepot_number() << '\n';
+		temp->PrintTrain();
+		temp = temp->GetPrev();
 	}
 }
-

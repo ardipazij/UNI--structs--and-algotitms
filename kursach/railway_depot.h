@@ -10,7 +10,7 @@ class Railway_depot {
         int depot_number_;
         int size_;
         Railway_depot * prev_;
-        Train trains[constants::TRAIN_SIZE];
+        Train trains[constants::TRAIN_SIZE]{};
     public:
 	    Railway_depot();
         Railway_depot(int depot_number);
@@ -31,4 +31,5 @@ class Railway_depot {
 	    void RemoveTrain(int id_to_remove);
 	    int FindTrain(int search_id);
         void PrintTrain();
+        const Train * GetTrain() const;
 };

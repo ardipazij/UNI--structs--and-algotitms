@@ -1,5 +1,10 @@
 #include "menu.h"
 #include <limits>
+#include <fstream>
+#include <filesystem>
+#include "file.h"
+using namespace std;
+
 void Menu::print_info(){
 	std::cout << "1 - добавить новое депо." << std::endl;
 	std::cout << "2 - добавить новый поезд." << std::endl;
@@ -54,7 +59,7 @@ void Menu::Depot_search( Railway railway)
 		std::cout << "\nДепо " << depot << " не было найдено\n";
 }
 
-void Menu::Console_output( Railway railway)
+void Menu::Console_output(const Railway& railway)
 {   
     std::cout << railway.GetName();
 	std::cout << '\n';
@@ -99,7 +104,7 @@ void Menu::Train_add(Railway& railway)
 
 	currentDepot->AddTrain(model, id);
 }
-// /////////////////////////////////////////////////////////////////
+
 void Menu::Train_search(Railway& railway)
 {
 	if (railway.IsRailwayEmpty())
@@ -140,11 +145,13 @@ void Menu::Train_delete(Railway& railway)
 	Railway_depot * current{ railway.GetRoot() };
 	while (current != nullptr)
 	{
-		if (current->FindTrain(id))
+		if (current->FindTrain(id) != -1){
             current->RemoveTrain(id);
-			std::cout << "поезд с регистрационным номером" << id << "удален из депо номер"
+			std::cout << "поезд с регистрационным номером" << id << "удален из депо номер "
 				<< current->GetDepot_number() << '\n';
+        }
 		current = current->GetPrev();
+        std::cout << "следущий курент"<< std::endl;
 	}
 }
 
@@ -162,8 +169,10 @@ void Menu::Railway_NameChange(Railway& railway)
 	std::string new_name{ getString() };
 	railway.SetName(new_name);
 }
+
 void Menu::handleCommand(Railway& railway, int command)
 {
+    File file{};
 	switch (command)
 	{
 		case 1:
@@ -190,6 +199,9 @@ void Menu::handleCommand(Railway& railway, int command)
 		case 8:
 			Railway_NameChange(railway);
 			break;
+        case 9:
+            file.writeToFile(railway, "railway.txt");
+            break;
 		case 11:
 			Railway_removing(railway);
 			break;

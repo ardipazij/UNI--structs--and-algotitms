@@ -97,11 +97,6 @@ int Railway_depot::FindTrain(int search_id){
 }
 void Railway_depot::RemoveTrain(int id_to_remove){
 	int find_ind{ FindTrain(id_to_remove) };
-	if (find_ind == -1) {
-		std::cout << "регистрационный номер поезда для удаления не найден" << std::endl;
-		return;
-	}
-	trains[find_ind].setId(-1);
 	for (int i = find_ind; i < size_ - 1; i++) {
 		trains[i] = trains[i + 1];
 	}
@@ -120,4 +115,8 @@ void Railway_depot::PrintTrain()
         std::cout << "Поезд: " << trains[i].getId() << " (" <<
 			trains[i].getModel() << ")\n";
     }
+}
+
+const Train *Railway_depot::GetTrain() const {
+    return trains;
 }
