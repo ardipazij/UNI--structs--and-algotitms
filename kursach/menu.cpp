@@ -150,7 +150,6 @@ void Menu::Train_delete(Railway& railway)
 				<< current->GetDepot_number() << '\n';
         }
 		current = current->GetPrev();
-        std::cout << "следущий курент"<< std::endl;
 	}
 }
 
