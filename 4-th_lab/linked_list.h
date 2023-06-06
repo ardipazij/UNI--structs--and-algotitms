@@ -1,5 +1,5 @@
-#ifndef LINKED_LIST_H
-#define LINLED_LIST_h
+#pragma once
+
 #define NMAX 10
 typedef struct {
     int data[NMAX];
@@ -13,4 +13,3 @@ void output(Node list);
 void search(Node lit, int n);
 void remove_elem(Node * list, int n);
 void printf_info();
-#endif

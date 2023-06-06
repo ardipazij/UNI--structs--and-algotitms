@@ -1,4 +1,5 @@
 #include "binary_tree.h"
+#include <time.h>
 #ifndef MENU_H
 #define MENU_H
 int get_number(int * n);

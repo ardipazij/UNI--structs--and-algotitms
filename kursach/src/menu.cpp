@@ -15,7 +15,8 @@ void Menu::print_info(){
     std::cout << "7 - Вывод информации о состоянии железной дороги на экарн" << std::endl;
     std::cout << "8 - изменить имя железной дороги." << std::endl;
 	std::cout << "9 - выгрузить содержимое железной дороги в файл." << std::endl; 
-    std::cout << "10 - Удалить железную дорогу и создать новую" << std::endl; 
+	std::cout << "10 - загрузить содержимое железной дороги из файл." << std::endl; 
+    std::cout << "11 - Удалить железную дорогу и создать новую" << std::endl; 
     std::cout << "-1 - выйти из программы." << std::endl;
 }
 
@@ -146,7 +147,7 @@ void Menu::Train_delete(Railway& railway)
 	{
 		if (current->FindTrain(id) != -1){
             current->RemoveTrain(id);
-			std::cout << "поезд с регистрационным номером " << id << " удален из депо номер "
+			std::cout << "поезд с регистрационным номером" << id << "удален из депо номер "
 				<< current->GetDepot_number() << '\n';
         }
 		current = current->GetPrev();
@@ -201,7 +202,7 @@ void Menu::handleCommand(Railway& railway, int command)
         case 9:
             file.writeToFile(railway, "railway.txt");
             break;
-		case 10:
+		case 11:
 			Railway_removing(railway);
 			break;
 	}

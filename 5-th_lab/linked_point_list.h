@@ -5,7 +5,7 @@ typedef struct{
     int next;
     int data;
 } Node;
-typedef struct {
+typedef struct List{
     Node array[NMAX+1];
     int size;
     int head;
