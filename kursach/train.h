@@ -17,4 +17,5 @@ public:
 
     std::string getModel() const;
     int getId() const;
+    ~Train() = default;
 };

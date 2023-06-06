@@ -41,7 +41,7 @@ void Menu::Railway_add(Railway& railway)
 	railway.pushDepot(depot);
 }
 
-void Menu::Depot_search( Railway railway)
+void Menu::Depot_search( const Railway& railway)
 {
 	if (railway.IsRailwayEmpty())
 	{
@@ -104,7 +104,7 @@ void Menu::Train_add(Railway& railway)
 	currentDepot->AddTrain(model, id);
 }
 
-void Menu::Train_search(Railway& railway)
+void Menu::Train_search(const Railway& railway)
 {
 	if (railway.IsRailwayEmpty())
 	{
@@ -155,10 +155,10 @@ void Menu::Train_delete(Railway& railway)
 
 void Menu::Railway_removing(Railway& railway)
 {
-	railway.~Railway();
-	std::cout << "\nВведите название новой железной дороги\n ";
-	std::string name{ getString() };
-	railway = Railway{name};
+	while(railway.GetRoot() != nullptr){
+        Delete_Depot(railway);
+    }
+	Railway_NameChange(railway);
 }
 
 void Menu::Railway_NameChange(Railway& railway)
