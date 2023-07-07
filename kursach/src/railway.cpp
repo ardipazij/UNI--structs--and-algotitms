@@ -34,7 +34,7 @@ Railway_depot * Railway::GetRoot() const{
 bool Railway::IsRailwayEmpty() const{
     return root_ == nullptr;
 }
-bool Railway::findDepot(int depot_number)
+bool Railway::findDepot(int depot_number) const
 {
 	Railway_depot * current{ root_ };
 	while (current != nullptr)

@@ -13,7 +13,7 @@ class Railway{
 	    void SetName(const std::string& name);
         Railway_depot * GetRoot() const;
 
-        bool findDepot(int depot_number);
+        bool findDepot(int depot_number) const;
         bool IsRailwayEmpty() const;
 	    void pushDepot(int depot_number);
 	    void popDepot();

@@ -15,8 +15,7 @@ void Menu::print_info(){
     std::cout << "7 - Вывод информации о состоянии железной дороги на экарн" << std::endl;
     std::cout << "8 - изменить имя железной дороги." << std::endl;
 	std::cout << "9 - выгрузить содержимое железной дороги в файл." << std::endl; 
-	std::cout << "10 - загрузить содержимое железной дороги из файл." << std::endl; 
-    std::cout << "11 - Удалить железную дорогу и создать новую" << std::endl; 
+    std::cout << "10 - Удалить железную дорогу и создать новую" << std::endl; 
     std::cout << "-1 - выйти из программы." << std::endl;
 }
 
@@ -42,7 +41,7 @@ void Menu::Railway_add(Railway& railway)
 	railway.pushDepot(depot);
 }
 
-void Menu::Depot_search( Railway railway)
+void Menu::Depot_search( const Railway& railway)
 {
 	if (railway.IsRailwayEmpty())
 	{
@@ -105,7 +104,7 @@ void Menu::Train_add(Railway& railway)
 	currentDepot->AddTrain(model, id);
 }
 
-void Menu::Train_search(Railway& railway)
+void Menu::Train_search(const Railway& railway)
 {
 	if (railway.IsRailwayEmpty())
 	{
@@ -147,20 +146,19 @@ void Menu::Train_delete(Railway& railway)
 	{
 		if (current->FindTrain(id) != -1){
             current->RemoveTrain(id);
-			std::cout << "поезд с регистрационным номером" << id << "удален из депо номер "
+			std::cout << "поезд с регистрационным номером " << id << " удален из депо номер "
 				<< current->GetDepot_number() << '\n';
         }
 		current = current->GetPrev();
-        std::cout << "следущий курент"<< std::endl;
 	}
 }
 
 void Menu::Railway_removing(Railway& railway)
 {
-	railway.~Railway();
-	std::cout << "\nВведите название новой железной дороги\n ";
-	std::string name{ getString() };
-	railway = Railway{name};
+	while(railway.GetRoot() != nullptr){
+        Delete_Depot(railway);
+    }
+	Railway_NameChange(railway);
 }
 
 void Menu::Railway_NameChange(Railway& railway)
@@ -202,7 +200,7 @@ void Menu::handleCommand(Railway& railway, int command)
         case 9:
             file.writeToFile(railway, "railway.txt");
             break;
-		case 11:
+		case 10:
 			Railway_removing(railway);
 			break;
 	}

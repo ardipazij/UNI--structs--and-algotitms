@@ -16,8 +16,8 @@ class Railway_depot {
         Railway_depot(int depot_number);
         void InitRailway_depot();
 
-	    bool IsDepotFull();
-	    bool IsDepotEmpty();
+	    bool IsDepotFull() const;
+	    bool IsDepotEmpty() const;
 
 	    void SetCountTrains(int size);
         void SetDepot_number(int depot_number);
@@ -29,7 +29,7 @@ class Railway_depot {
 
 	    void AddTrain(const std::string& model, int id);
 	    void RemoveTrain(int id_to_remove);
-	    int FindTrain(int search_id);
-        void PrintTrain();
+	    int FindTrain(int search_id) const;
+        void PrintTrain() const;
         const Train * GetTrain() const;
 };

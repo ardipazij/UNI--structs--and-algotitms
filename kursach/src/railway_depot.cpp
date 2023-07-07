@@ -21,10 +21,10 @@ Railway_depot::Railway_depot(int depot_number):
 {
     InitRailway_depot();
 }
-bool Railway_depot::IsDepotFull(){
+bool Railway_depot::IsDepotFull() const{
     return size_ == constants::TRAIN_SIZE;
 }
-bool Railway_depot::IsDepotEmpty(){
+bool Railway_depot::IsDepotEmpty() const{
     return size_ == 0;
 }
 void Railway_depot::SetCountTrains(int size){
@@ -77,7 +77,7 @@ void Railway_depot::AddTrain(const std::string& model, int id) {
 	}
 	size_++;
 }
-int Railway_depot::FindTrain(int search_id){
+int Railway_depot::FindTrain(int search_id) const{
     int first{ 0 };
 	int last{ size_ - 1 };
 	int mid{};
@@ -103,7 +103,7 @@ void Railway_depot::RemoveTrain(int id_to_remove){
 	size_--;
 }
 
-void Railway_depot::PrintTrain()
+void Railway_depot::PrintTrain() const
 {
 	if (IsDepotEmpty())
 	{
